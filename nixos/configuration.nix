@@ -30,7 +30,9 @@
     spleen
     fira-code-symbols
     powerline-fonts
-    nerdfonts
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
   ];
 
 
@@ -98,7 +100,8 @@
 
   # List packages installed in system profile. To search, run: $ nix search wget
   environment.systemPackages = with pkgs; [ 
-   
+    # system
+
     # development
     dotnet-sdk_7
     dotnet-runtime_7
