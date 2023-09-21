@@ -5,6 +5,7 @@
 * Introduction
 
 ** Current disk partitions
+#+BEGIN_SRC shell
 Disk /dev/nvme0n1: 953.87 GiB, 1024209543168 bytes, 2000409264 sectors
 Disk model: SAMSUNG MZVL21T0HCLR-00BL7
 Units: sectors of 1 * 512 = 512 bytes
@@ -23,6 +24,7 @@ Disk /dev/mapper/cryptroot: 889.36 GiB, 954947935744 bytes, 1865132687 sectors
 Units: sectors of 1 * 512 = 512 bytes
 Sector size (logical/physical): 512 bytes / 512 bytes
 I/O size (minimum/optimal): 512 bytes / 512 bytes
+#+END_SRC
 
 ** Installation
 #+BEGIN_SRC shell
