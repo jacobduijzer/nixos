@@ -4,6 +4,21 @@
 
 * Introduction
 
+** Installation
+#+BEGIN_SRC shell
+mkfs.vfat /dev/sda1
+cryptsetup luksFormat /dev/sda2
+cryptsetup luksOpen /dev/sda2 nixos
+mkfs.ext4 /dev/mapper/nixos
+mount /dev/mapper/nixos /mnt
+mkdir /mnt/boot
+mount /dev/sda1 /mnt/boot
+nixos-generate-config --root /mnt
+vim /mnt/etc/configuration.nix # optional, but you might want to make some changes
+nixos-install
+reboot
+#+END_SRC
+
 ** Partitioning?
 
    #+BEGIN_SRC shell
