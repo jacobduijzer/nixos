@@ -4,6 +4,26 @@
 
 * Introduction
 
+** Current disk partitions
+Disk /dev/nvme0n1: 953.87 GiB, 1024209543168 bytes, 2000409264 sectors
+Disk model: SAMSUNG MZVL21T0HCLR-00BL7
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: gpt
+Disk identifier: E083BFE5-CA67-E346-975F-2676FC8BC1BB
+
+Device             Start        End    Sectors   Size Type
+/dev/nvme0n1p1      2048    1026047    1024000   500M EFI System
+/dev/nvme0n1p2   1026048  135243775  134217728    64G Linux swap
+/dev/nvme0n1p3 135243776 2000409230 1865165455 889.4G Linux filesystem
+
+
+Disk /dev/mapper/cryptroot: 889.36 GiB, 954947935744 bytes, 1865132687 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
 ** Installation
 #+BEGIN_SRC shell
 mkfs.vfat /dev/sda1
