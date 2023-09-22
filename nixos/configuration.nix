@@ -46,6 +46,9 @@
 		k3d
 		killall
 		fprintd
+		sqlite
+		cmake
+		gcc
 	];
 
 	# Enable the OpenSSH daemon.

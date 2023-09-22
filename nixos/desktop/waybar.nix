@@ -82,7 +82,7 @@ window#waybar {
 		};
 	};
 	clock = {
-		format = "{:%Y-%m-%d %H:%M}";
+		format = "{:%d-%m-%Y %H:%M}";
 	};
 	pulseaudio = {
 		format = "{icon} {volume}% {format_source}";

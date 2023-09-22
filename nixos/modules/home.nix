@@ -36,6 +36,26 @@
     
   };
 
+	xdg = {
+		enable = true;
+		mimeApps = {
+			enable = true;
+			defaultApplications = {
+				"application/x-extension-htm" = [ "/etc/profiles/per-user/jacob/bin/vivaldi" ];
+				"application/x-extension-html" = [ "/etc/profiles/per-user/jacob/bin/vivaldi" ];
+				"application/x-extension-shtml" = [ "/etc/profiles/per-user/jacob/bin/vivaldi" ];
+				"application/x-extension-xht" = [ "/etc/profiles/per-user/jacob/bin/vivaldi" ];
+				"application/x-extension-xhtml" = [ "/etc/profiles/per-user/jacob/bin/vivaldi" ];
+				"application/x-extension-xhtml+xml" = [ "/etc/profiles/per-user/jacob/bin/vivaldi" ];
+				"text/html" = [ "/etc/profiles/per-user/jacob/bin/vivaldi" ];
+				"x-scheme-handler/chrome" = [ "/etc/profiles/per-user/jacob/bin/vivaldi" ];
+				"x-scheme-handler/ftp" = [ "/etc/profiles/per-user/jacob/bin/vivaldi" ];
+				"x-scheme-handler/http" = [ "/etc/profiles/per-user/jacob/bin/vivaldi" ];
+				"x-scheme-handler/https" = [ "/etc/profiles/per-user/jacob/bin/vivaldi" ];
+			};
+		};
+	};
+
     home.sessionVariables = {
 	    BROWSER = "google-chrome-beta";
 	    TERMINAL = "alacritty";
@@ -61,10 +81,11 @@
 	    XDG_SESSION_TYPE = "wayland";
 	    GTK_USE_PORTAL = "1";
 	    NIXOS_XDG_OPEN_USE_PORTAL = "1";
-	    XDG_CACHE_HOME = "\${HOME}/.cache";
-	    XDG_CONFIG_HOME = "\${HOME}/.config";
+		    #XDG_CACHE_HOME = "\${HOME}/.cache";
+		    #XDG_CONFIG_HOME = "\${HOME}/.config";
 	    XDG_BIN_HOME = "\${HOME}/.local/bin";
-	    XDG_DATA_HOME = "\${HOME}/.local/share";
+		    #XDG_DATA_HOME = "\${HOME}/.local/share";
+		CMAKE_MAKE_PROGRAM = "/run/current-system/sw/bin/cmake";
     };
 
 	fonts.fontconfig.enable = true;

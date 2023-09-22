@@ -45,7 +45,7 @@
 
 	output = {
 		"*" = {
-			background = "~/.config/nixos/desktop/wallpapers/nixos-wallpaper-dark.png fill";
+			background = "~/.dotfiles/nixos/desktop/wallpapers/nixos-wallpaper-dark.png fill";
 		};
 		"eDP-1" = {
 			position = "0,1080";
@@ -68,7 +68,8 @@
 		"${mod}+Return" = "exec ${term}";
 		"${mod}+space" = "exec ${app-menu} -show drun";
 		"${mod}+Mod1+space" = "exec bwm";
-		"${mod}+Shift+Return" = "exec /etc/profiles/per-user/jacob/bin/chromium";
+		"${mod}+Shift+Return" = "exec /etc/profiles/per-user/jacob/bin/vivaldi";
+		#"${mod}+Shift+Return" = "exec /etc/profiles/per-user/jacob/bin/chromium";
           "${mod}+Escape" = "exec ${power-menu}";
           "${mod}+Shift+q" = "kill";
           # Reload the configuration file

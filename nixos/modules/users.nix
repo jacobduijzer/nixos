@@ -7,6 +7,7 @@
 		description = "Jacob Duijzer";
 		extraGroups = [ "networkmanager" "wheel" "docker" ];
 		packages = with pkgs; [
+			vivaldi
 			chromium
 			ferdium
 			bitwarden bitwarden-cli bitwarden-menu
