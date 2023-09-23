@@ -92,7 +92,7 @@
 
 	# shells
 	environment.shells = with pkgs; [ zsh ];
-	users.defaultUserShell = pkgs.zsh;
+	#users.defaultUserShell = pkgs.zsh;
 
 	# Automatic garbage collection
 	nix.gc = {
