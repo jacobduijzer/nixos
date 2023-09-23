@@ -4,7 +4,7 @@
 		./alacritty.nix
 		../desktop/waybar.nix
 		../development/git.nix
-		./zsh.nix
+		#./zsh.nix
 	];
 
 	home.username = "jacob";
