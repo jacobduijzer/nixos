@@ -20,6 +20,12 @@
 			# development
 			jetbrains.rider
 			gnupg pinentry
+			dotnet-sdk
+			dotnet-aspnetcore
+			dotnet-runtime
+			dotnet-sdk_7
+			dotnet-aspnetcore_7
+			dotnet-runtime_7
 
 			# image
 			gimp
@@ -28,6 +34,7 @@
 			viewnior                                  #image viewr
 
 			# system
+			z-lua
 
 			############
 			swaylock-effects swayidle wlogout swaybg  #Login etc..  
