@@ -49,6 +49,7 @@
 		sqlite
 		cmake
 		gcc
+		zsh
 	];
 
 	# Enable the OpenSSH daemon.
@@ -88,6 +89,10 @@
 
 	networking.firewall.allowedTCPPorts = [ 22 80 443 ];
 	networking.firewall.enable = false;
+
+	# shells
+	environment.shells = with pkgs; [ zsh ];
+	users.defaultUserShell = pkgs.zsh;
 
 	# Automatic garbage collection
 	nix.gc = {

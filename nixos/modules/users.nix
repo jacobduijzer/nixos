@@ -27,6 +27,8 @@
 			slurp
 			viewnior                                  #image viewr
 
+			# system
+
 			############
 			swaylock-effects swayidle wlogout swaybg  #Login etc..  
 			waybar                                    #topbar 
