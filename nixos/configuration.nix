@@ -7,6 +7,7 @@
 		# config
 		./modules/users.nix
 		./modules/greetd.nix
+		./misc/vim/nix
 
 		# audio
 		./audio/general.nix
