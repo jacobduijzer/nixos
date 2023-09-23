@@ -16,6 +16,9 @@
 			emacs
 			
 			wlr-randr
+			
+			# misc
+			libreoffice-fresh
 
 			# development
 			jetbrains.rider
