@@ -13,7 +13,15 @@
 
 			vimrcConfig.customRC = ''
 set nocompatible
-set backspace=indent,eol,start
+set number
+set ruler
+set autoindent
+set laststatus=2
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+set noshowmode
 syntax on
 '';
 			}
