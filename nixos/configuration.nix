@@ -45,7 +45,6 @@
 		git
 		k3d
 		killall
-		fprintd
 		sqlite
 		cmake
 		gcc
@@ -64,13 +63,6 @@
 
 	# docker
 	virtualisation.docker.enable = true;
-
-	# fingerprint
-	services.fprintd = {
-		enable = true;
-		tod.enable = true;
-		tod.driver = pkgs.libfprint-2-tod1-vfs0090;
-	};
 
 	# Wayland related
 	#security.polkit.enable = true;

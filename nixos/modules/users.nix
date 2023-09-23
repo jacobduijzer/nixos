@@ -32,9 +32,11 @@
 			grim
 			slurp
 			viewnior                                  #image viewr
+			imagemagick
 
 			# system
 			z-lua
+			jq
 
 			############
 			swaylock-effects swayidle wlogout swaybg  #Login etc..  
@@ -119,13 +121,13 @@
 
    #Overlays
     #Waybar wlr/Workspaces
-    nixpkgs.overlays = [
-    (self: super: {
-      waybar = super.waybar.overrideAttrs (oldAttrs: {
-        mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-      });
-    })
-    ];
+    #nixpkgs.overlays = [
+    #(self: super: {
+    #  waybar = super.waybar.overrideAttrs (oldAttrs: {
+    #    mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+    #  });
+    #})
+    #];
 
 
 }

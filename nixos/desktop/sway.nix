@@ -69,7 +69,9 @@
 		"${mod}+space" = "exec ${app-menu} -show drun";
 		"${mod}+Mod1+space" = "exec bwm";
 		"${mod}+Shift+Return" = "exec /etc/profiles/per-user/jacob/bin/vivaldi";
-		#"${mod}+Shift+Return" = "exec /etc/profiles/per-user/jacob/bin/chromium";
+		"${mod}+Shift+Escape" = "exec /home/jacob/.dotfiles/scripts/blur-lock-screen.sh";
+
+		
           "${mod}+Escape" = "exec ${power-menu}";
           "${mod}+Shift+q" = "kill";
           # Reload the configuration file
