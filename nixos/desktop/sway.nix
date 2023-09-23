@@ -37,39 +37,40 @@
         #NIXOS_OZONE_WL = "1";
       '';
       config = {
-	fonts = [ "sans-serif 12" ];
-	terminal = "alacritty";
+        fonts = [ "sans-serif 12" ];
+        terminal = "alacritty";
         modifier = "Mod4";
 
         bars = [{ command = "waybar"; }];
 
-	output = {
-		"*" = {
-			background = "~/.dotfiles/nixos/desktop/wallpapers/nixos-wallpaper-dark.png fill";
-		};
-		"eDP-1" = {
-			position = "0,1080";
-		};
-		"HDMI-A-1" = {
-			position = "0,0";
-		};
+        output = {
+          "*" = {
+            background = "~/.dotfiles/nixos/desktop/wallpapers/nixos-wallpaper-dark.png fill";
+          };
+          "eDP-1" = {
+            position = "0,1080";
+          };
+          "HDMI-A-1" = {
+            position = "0,0";
+          };
         };
 
         startup = [
           { command = "autotiling"; }
         ];
 
-        keybindings = let
+        keybindings = 
+        let
           mod = "Mod4";
           term = "alacritty";
           app-menu = "rofi";
           power-menu = "nwgbar";
         in {
-		"${mod}+Return" = "exec ${term}";
-		"${mod}+space" = "exec ${app-menu} -show drun";
-		"${mod}+Mod1+space" = "exec bwm";
-		"${mod}+Shift+Return" = "exec /etc/profiles/per-user/jacob/bin/vivaldi";
-		"${mod}+Shift+Escape" = "exec /home/jacob/.dotfiles/scripts/blur-lock-screen.sh";
+          "${mod}+Return" = "exec ${term}";
+          "${mod}+space" = "exec ${app-menu} -show drun";
+          "${mod}+Mod1+space" = "exec bwm";
+          "${mod}+Shift+Return" = "exec /etc/profiles/per-user/jacob/bin/vivaldi";
+          "${mod}+Shift+Escape" = "exec /home/jacob/.dotfiles/scripts/blur-lock-screen.sh";
 
 		
           "${mod}+Escape" = "exec ${power-menu}";
@@ -77,7 +78,7 @@
           # Reload the configuration file
           "${mod}+Shift+c" = "reload";
           # Screenshot
-          "${mod}+g" = "exec wayshot";
+          "${mod}+Print" = "exec grimshot --notify save area - | swappy -f -";
           # Exit sway (logs you out of your Wayland session)
           "${mod}+Shift+e" = "exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'";
           # Move your focus around

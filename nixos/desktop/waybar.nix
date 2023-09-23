@@ -5,7 +5,7 @@
     enable = true;
     systemd.enable = true;
 		#${builtins.readFile "${pkgs.waybar}/etc/xdg/waybar/style.css"}
-	style = ''
+    style = ''
 
 * {
     border: none;
@@ -30,6 +30,7 @@ window#waybar {
 
 #workspaces button.focused {
     color: white;
+    font-weight: 900;
 }
 
 #mode {
@@ -57,51 +58,54 @@ window#waybar {
     border-radius: 6px;
     padding: 1px 5px 1px 5px;
 }
-	'';
+    '';
 
-	settings = [{
-		height = 34;
-		layer = "top";
-		position = "top";
-		tray = { spacing = 10; };
-		modules-left = [ "clock" ];
-		modules-center = [ "sway/workspaces" ];
-		modules-right = [
-		"pulseaudio"
-		"battery"
-	];
-	battery = {
-		format = "{capacity}% {icon}";
-		format-alt = "{time} {icon}";
-		format-charging = "{capacity}% ";
-		format-icons = [ "" "" "" "" "" ];
-		format-plugged = " {capacity}%";
-		states = {
-			critical = 15;
-			warning = 30;
-		};
-	};
-	clock = {
-		format = "{:%d-%m-%Y %H:%M}";
-	};
-	pulseaudio = {
-		format = "{icon} {volume}% {format_source}";
-		format-bluetooth = " {volume}%";
-		format-bluetooth-muted = " {icon} {format_source}";
-		format-icons = {
-			car = "";
-			default = [ "" "" "" ];
-			handsfree = "";
-			headphones = "";
-			headset = "";
-			phone = "";
-			portable = "";
-		};
-		format-muted = " {format_source}";
-		format-source = "{volume}% ";
-		format-source-muted = "";
-		on-click = "pavucontrol";
-	};
+    settings = [{
+      height = 34;
+      layer = "top";
+      position = "top";
+      tray = { spacing = 10; };
+      modules-left = [ "clock" ];
+      modules-center = [ "sway/workspaces" ];
+      modules-right = [
+        "pulseaudio"
+        "battery"
+      ];
+
+      battery = {
+        format = "{icon} {capacity}%";
+        format-alt = "{icon} {time}";
+        format-charging = " {capacity}%";
+        format-icons = [ " " " " " " " " " " ];
+        format-plugged = " {capacity}%";
+        states = {
+          critical = 15;
+          warning = 30;
+        };
+      };
+
+      clock = {
+        format = "{:%d-%m-%Y %H:%M}";
+      };
+
+      pulseaudio = {
+        format = "{icon} {volume}% {format_source}";
+        format-bluetooth = " {volume}%";
+        format-bluetooth-muted = " {icon} {format_source}";
+        format-icons = {
+          car = "";
+          default = [ "" "" "" ];
+          handsfree = "";
+          headphones = "";
+          headset = "";
+          phone = "";
+          portable = "";
+        };
+        format-muted = " {format_source}";
+        format-source = " {volume}%";
+        format-source-muted = "";
+        on-click = "pavucontrol";
+      };
     }];
   };
 }

@@ -33,6 +33,7 @@
 			slurp
 			viewnior                                  #image viewr
 			imagemagick
+      swappy
 
 			# system
 			z-lua
