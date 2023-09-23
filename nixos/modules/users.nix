@@ -20,9 +20,6 @@
 			# development
 			jetbrains.rider
 			gnupg pinentry
-			dotnet-sdk
-			dotnet-aspnetcore
-			dotnet-runtime
 			dotnet-sdk_7
 			dotnet-aspnetcore_7
 			dotnet-runtime_7
