@@ -33,19 +33,13 @@ window#waybar {
     font-weight: 900;
 }
 
-#mode {
-    margin: 0px 15px 0px 15px;
-    padding: 0px 12px 0px 12px;
-    color: black;
-    background: white;
-}
-
 @keyframes critical {
     to {
     color: rgba(187,56,0, 1);
     }
 }
 
+#mode,
 #battery,
 #clock {
 	padding: 4px;
@@ -65,7 +59,7 @@ window#waybar {
       layer = "top";
       position = "top";
       tray = { spacing = 10; };
-      modules-left = [ "clock" ];
+      modules-left = [ "clock" "sway/mode"  ];
       modules-center = [ "sway/workspaces" ];
       modules-right = [
         "pulseaudio"
@@ -91,7 +85,7 @@ window#waybar {
       pulseaudio = {
         format = "{icon} {volume}% {format_source}";
         format-bluetooth = " {volume}%";
-        format-bluetooth-muted = " {icon} {format_source}";
+        format-bluetooth-muted = "󰝟 {icon} {format_source}";
         format-icons = {
           car = "";
           default = [ "" "" "" ];
@@ -101,7 +95,7 @@ window#waybar {
           phone = "";
           portable = "";
         };
-        format-muted = " {format_source}";
+        format-muted = "󰝟 {format_source}";
         format-source = " {volume}%";
         format-source-muted = "";
         on-click = "pavucontrol";

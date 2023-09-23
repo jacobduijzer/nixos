@@ -15,6 +15,7 @@
 
 		# desktop
 		./desktop/sway.nix
+    ./desktop/swayidle.nix
 
 		# development
 		./development/k3s.nix
@@ -50,6 +51,8 @@
 		cmake
 		gcc
 		zsh
+    swayidle
+    cifs-utils
 	];
 
 	# Enable the OpenSSH daemon.
@@ -78,6 +81,7 @@
 		fira-code
 		jetbrains-mono
 		font-awesome
+    font-awesome_5
 	];
 
 	networking.firewall.allowedTCPPorts = [ 22 80 443 ];

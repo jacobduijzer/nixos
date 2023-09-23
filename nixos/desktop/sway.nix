@@ -37,7 +37,10 @@
         #NIXOS_OZONE_WL = "1";
       '';
       config = {
-        fonts = [ "sans-serif 12" ];
+        fonts = {
+          names = [ "JetBrainsMono Nerd Font" "FontAwesome" ];
+          size = 12.0;
+        };  
         terminal = "alacritty";
         modifier = "Mod4";
 
@@ -66,14 +69,19 @@
           app-menu = "rofi";
           power-menu = "nwgbar";
         in {
+          # Start terminal
           "${mod}+Return" = "exec ${term}";
-          "${mod}+space" = "exec ${app-menu} -show drun";
-          "${mod}+Mod1+space" = "exec bwm";
-          "${mod}+Shift+Return" = "exec /etc/profiles/per-user/jacob/bin/vivaldi";
-          "${mod}+Shift+Escape" = "exec /home/jacob/.dotfiles/scripts/blur-lock-screen.sh";
 
+          "${mod}+space" = "exec ${app-menu} -show drun";
+
+          "${mod}+Mod1+space" = "exec bwm";
+          # Start browser
+          "${mod}+Shift+Return" = "exec /etc/profiles/per-user/jacob/bin/vivaldi";
+          # Lock screen with blur
+          "${mod}+Shift+Escape" = "exec /home/jacob/.dotfiles/scripts/blur-lock-screen.sh";
 		
           "${mod}+Escape" = "exec ${power-menu}";
+          # Kill programs
           "${mod}+Shift+q" = "kill";
           # Reload the configuration file
           "${mod}+Shift+c" = "reload";
@@ -135,26 +143,26 @@
           # Toggle the current focus between tiling and floating mode
           "${mod}+Shift+space" = "floating toggle";
           # Swap focus between the tiling area and the floating area
-          #"${mod}+space" = "focus mode_toggle";
-          # Move focus to the parent container
-          "${mod}+a" = "focus parent";
+
           # Scratchpad:
           "${mod}+Shift+minus" = "move scratchpad";
-          "${mod}+minus" = "scratchpad show";
+          "${mod}+Ctrl+minus" = "scratchpad show";
+
           "${mod}+r" = "mode \"resize\"";
+
           # Audio
           "XF86AudioStop" = "exec ${pkgs.playerctl}/bin/playerctl stop";
           "XF86AudioPrev" = "exec ${pkgs.playerctl}/bin/playerctl previous";
           "XF86AudioNext" = "exec ${pkgs.playerctl}/bin/playerctl next";
-          "XF86AudioPlay" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
+          "XF86Calculator" = "exec playerctl play-pause";
           # Sink volume raise optionally with --device
-          "XF86AudioRaiseVolume" = "exec ${pkgs.swayosd} --output-volume raise";
+          "XF86AudioRaiseVolume" = "exec swayosd --output-volume raise";
           # Sink volume lower optionally with --device
-          "XF86AudioLowerVolume" = "exec ${pkgs.swayosd} --output-volume lower";
+          "XF86AudioLowerVolume" = "exec swayosd --output-volume lower";
           # Sink volume toggle mute
-          "XF86AudioMute" = "exec ${pkgs.swayosd} --output-volume mute-toggle";
+          "XF86AudioMute" = "exec swayosd --output-volume mute-toggle";
           # Source volume toggle mute
-          "XF86AudioMicMute" =  "exec ${pkgs.swayosd} --input-volume mute-toggle";
+          "XF86AudioMicMute" =  "exec swayosd --input-volume mute-toggle";
           # Brightness raise
           "XF86MonBrightnessUp" = "exec ${pkgs.swayosd} --brightness raise";
           # Brightness lower

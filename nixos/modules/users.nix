@@ -38,9 +38,13 @@
 			# system
 			z-lua
 			jq
+      swayosd
+
+      # misc
+      calibre
 
 			############
-			swaylock-effects swayidle wlogout swaybg  #Login etc..  
+			swaylock-effects wlogout swaybg  #Login etc..  
 			waybar                                    #topbar 
 			wayland-protocols
 			libsForQt5.qt5.qtwayland
