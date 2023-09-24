@@ -99,6 +99,17 @@
 
 *** Sway
 
+    Special keys for sway:
+
+    +-----+-----+-----+
+    | Keys    | Description     | Remarks    |
+    +-----+-----+-----+
+    | Mod+Shift+Excape    | Lock screen     |     |
+    +-----+-----+-----+
+    |     |     |     |
+    +-----+-----+-----+
+
+
 *** ZSH
 
 *** Backups
