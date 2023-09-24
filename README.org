@@ -10,9 +10,9 @@
     - [[#partitioning][Partitioning?]]
   - [[#configuration][Configuration]]
     - [[#sway][Sway]]
+    - [[#zsh][ZSH]]
     - [[#backups][Backups]]
     - [[#waybar][Waybar]]
-    - [[#zsh][ZSH]]
 
 * My NixOS Setup & Configuration
   
@@ -99,11 +99,32 @@
 
 *** Sway
 
+*** ZSH
+
 *** Backups
+
+    I am using Borg to make backups of my Documents folder daily. You can find more information and the Borg docs [[https://borgbackup.readthedocs.io/en/1.0-maint/index.html][here]].
+
+    Run the backup:
+
+    #+BEGIN_SRC bash
+    sudo systemctl start borgbackup-job-jacobs-documents.service
+    #+END_SRC
+
+    Check the backup status:
+
+    #+BEGIN_SRC bash
+    sudo systemctl status borgbackup-job-jacobs-documents.service
+    #+END_SRC
+
+    Check the backup status on the server:
+
+    #+BEGIN_SRC bash
+    borg list /home/jacob/Backups 
+    #+END_SRC
 
 *** Waybar
 
-*** ZSH
   
 
    
