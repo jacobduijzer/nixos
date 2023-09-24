@@ -84,13 +84,29 @@
     font-awesome_5
 	];
 
+  # firewall configuration
+	networking.firewall.enable = true;
 	networking.firewall.allowedTCPPorts = [ 22 80 443 ];
-	networking.firewall.enable = false;
+
+  # enable antivirus clamav and
+  # keep the signatures' database updated
+  services.clamav.daemon.enable = true;
+  services.clamav.updater.enable = true;
 
 	# shells
 	environment.shells = with pkgs; [ zsh ];
 	programs.zsh.enable = true;
 	users.defaultUserShell = pkgs.zsh;
+
+  # backups
+  services.borgbackup.jobs.jacobs-documents = {
+    paths = "/home/jacob/Documents";
+    encryption.mode = "none";
+    environment.BORG_UNKNOWN_UNENCRYPTED_REPO_ACCESS_IS_OK = "yes";
+    environment.BORG_RSH = "ssh -o 'StrictHostKeyChecking=no' -i /home/jacob/.ssh/id_ed25519";
+    repo = "ssh://jacob@huis.duijzer.com//home/jacob/Backups";
+    startAt = "daily";
+  };
 
 	# Automatic garbage collection
 	nix.gc = {

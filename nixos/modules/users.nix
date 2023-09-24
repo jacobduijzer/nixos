@@ -19,6 +19,7 @@
 			
 			# misc
 			libreoffice-fresh
+      microsoft-edge
 
 			# development
 			jetbrains.rider
