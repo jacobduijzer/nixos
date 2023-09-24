@@ -4,9 +4,7 @@
   programs.waybar = {
     enable = true;
     systemd.enable = true;
-		#${builtins.readFile "${pkgs.waybar}/etc/xdg/waybar/style.css"}
     style = ''
-
 * {
     border: none;
     border-radius: 0;
@@ -41,16 +39,10 @@ window#waybar {
 
 #mode,
 #battery,
+#network,
 #clock {
 	padding: 4px;
 	margin: 4px;
-}
-
-#tray {
-    margin: 7px 15px 0 4px;
-    background: rgba(40,40,40, .65);
-    border-radius: 6px;
-    padding: 1px 5px 1px 5px;
 }
     '';
 
@@ -63,6 +55,8 @@ window#waybar {
       modules-center = [ "sway/workspaces" ];
       modules-right = [
         "pulseaudio"
+        "network"
+        "network#wired"
         "battery"
       ];
 
@@ -99,6 +93,16 @@ window#waybar {
         format-source = " {volume}%";
         format-source-muted = "";
         on-click = "pavucontrol";
+      };
+
+      network = {
+        format-wifi = "󰖩";
+        format = "󰖪";
+      };
+
+      "network#wired" = {
+        format-ethernet = "󰈁";
+        format = "󰈂";
       };
     }];
   };
