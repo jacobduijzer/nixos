@@ -101,13 +101,36 @@
 
     Special keys for sway:
 
-    | Keys             | Description | Remarks |
-    |------------------+-------------+---------|
-    | Mod+Shift+Excape | Lock screen |         |
-    |                  |             |         |
-
+    | Keys             | Description               | Remarks                                |
+    |------------------+---------------------------+----------------------------------------|
+    | Mod+Shift+Excape | Lock screen               |                                        |
+    | Mod+Shift+c      | Reload Sway configuration |                                        |
+    | Mod+Shift+Space  | Floating toggle           | Not Full-screen, waybar still visible  |
+    | Mod+Print        | Printscreen of an area    | Using grimshot + swappy                |
+    | Mod+Shift+Minus  | Move window to scratchpad |                                        |
+    | Mod+Ctrl+Minus   | Show scratchpad           |                                        |
+    | XF86Calculator   | Play/Pause                | Toggles playing / pause for active app |
 
 *** ZSH
+
+    Configured with p10k. To create a new profile (the original is protected by nixos):
+
+    #+BEGIN_SRC bash
+    POWERLEVEL9K_CONFIG_FILE=p10k.zsh p10k configure
+    mv p10k.zsh ~/.dotfiles/nixos/misc/p10k-theme.zsh
+    #+END_SRC
+
+    Installed plugins (more info [[https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins][here]]):
+    * command-not-found
+    * docker
+    * docker-compose
+    * dotnet
+    * emacs
+    * emoji
+    * git
+    * kubectl
+    * thefuck
+    * z
 
 *** Backups
 
