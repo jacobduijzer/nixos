@@ -5,6 +5,7 @@
 		../desktop/waybar.nix
 		../development/git.nix
 		../misc/zsh.nix
+    ../communication/teams.nix
 	];
 
 	home.username = "jacob";
