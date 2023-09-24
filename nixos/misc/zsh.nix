@@ -19,5 +19,22 @@ in
 				}
 			];
 		};
+
+    oh-my-zsh = {
+      enable = true;
+      plugins = [
+        "command-not-found"
+        "docker"
+        "docker-compose"
+        "dotnet"
+        "emacs"
+        "emoji"
+        "git"
+        "kubectl"
+        "thefuck"
+        "z"
+      ];
+      theme = "robbyrussell";
+    };
 	};
 }

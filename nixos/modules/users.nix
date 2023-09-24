@@ -40,6 +40,9 @@
 			jq
       swayosd
 
+      # zsh
+      thefuck
+
       # misc
       calibre
 

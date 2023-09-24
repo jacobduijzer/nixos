@@ -52,6 +52,7 @@
 		cmake
 		gcc
 		zsh
+    oh-my-zsh
     swayidle
     cifs-utils
 	];
