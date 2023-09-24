@@ -2,7 +2,33 @@
 #+AUTHOR: Jacob Duijzer
 #+STARTUP: inlineimages
 
-* Introduction
+* Table of Contents :TOC_4:
+- [[#my-nixos-setup--configuration][My NixOS Setup & Configuration]]
+  - [[#installation][Installation]]
+  - [[#configuration][Configuration]]
+    - [[#sway][Sway]]
+    - [[#backups][Backups]]
+    - [[#waybar][Waybar]]
+    - [[#][]]
+  - [[#current-disk-partitions][Current disk partitions]]
+  - [[#installation-1][Installation]]
+  - [[#partitioning][Partitioning?]]
+  - [[#partitioning-for-virtualbox][Partitioning for VirtualBox]]
+
+* My NixOS Setup & Configuration
+  
+** Installation
+   
+** Configuration
+
+*** Sway
+
+*** Backups
+
+*** Waybar
+
+*** 
+  
 
 ** Current disk partitions
 #+BEGIN_SRC shell
