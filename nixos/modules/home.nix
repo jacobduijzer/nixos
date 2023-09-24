@@ -5,7 +5,6 @@
 		../desktop/waybar.nix
 		../development/git.nix
 		../misc/zsh.nix
-    ../misc/network-mounts.nix
 	];
 
 	home.username = "jacob";

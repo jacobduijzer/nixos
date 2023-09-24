@@ -8,6 +8,7 @@
 		./modules/users.nix
 		./modules/greetd.nix
 		./misc/vim.nix
+    ./misc/network-mounts.nix
 
 		# audio
 		./audio/general.nix
