@@ -1,7 +1,6 @@
 # Nice example here: https://github.com/Riey/home.nix/blob/master/sway.nix 
 
 { pkgs, lib, ... }:
-
 {
   services.xserver.excludePackages = [ pkgs.xterm ];
 
@@ -16,8 +15,44 @@
       brightnessctl
     ];
     
-    programs.swaylock.enable = true;
-    services.swayidle.enable = true;
+    programs.swaylock = {
+      enable = true;
+      settings = {
+        clock = true;
+        screenshots = true;
+        effect-blur = "7x5";
+        indicator-radius = 100;
+        indicator-thickness = 7;
+        key-hl-color = "880033";
+        line-color = "000000";
+        inside-color = "000000";
+        separator-color = "000000";
+        ring-color = "ff8e0d";
+        text-color = "ffffff";
+        grace = 1;
+      };
+    };
+
+    services.swayidle = {
+      enable = true;
+      timeouts = [
+        {
+          timeout = 295;
+          command = "${pkgs.libnotify}/bin/notify-send 'Locking in 5 seconds' -t 5000";
+        }
+        {
+          timeout = 300;
+          command = "${pkgs.swaylock}/bin/swaylock";
+        }
+      ];
+      #events = [
+      #  {
+      #    event = "before-sleep";
+      #    command = "${pkgs.swaylock}/bin/swaylock";
+      #  }
+      #];
+    };
+
     services.swayosd.enable = true;
     wayland.windowManager.sway = {
       enable = true;
@@ -68,6 +103,7 @@
           term = "alacritty";
           app-menu = "rofi";
           power-menu = "nwgbar";
+          lockscreen = "swaylock";
         in {
           # Start terminal
           "${mod}+Return" = "exec ${term}";
@@ -78,7 +114,7 @@
           # Start browser
           "${mod}+Shift+Return" = "exec /etc/profiles/per-user/jacob/bin/vivaldi";
           # Lock screen with blur
-          "${mod}+Shift+Escape" = "exec /home/jacob/.dotfiles/scripts/blur-lock-screen.sh";
+          "${mod}+Shift+Escape" = "exec ${lockscreen}";
 		
           "${mod}+Escape" = "exec ${power-menu}";
           # Kill programs

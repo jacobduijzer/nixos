@@ -16,7 +16,6 @@
 
 		# desktop
 		./desktop/sway.nix
-    ./desktop/swayidle.nix
 
 		# development
 		./development/k3s.nix
@@ -53,7 +52,6 @@
 		gcc
 		zsh
     oh-my-zsh
-    swayidle
     cifs-utils
 	];
 

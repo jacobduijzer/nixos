@@ -38,13 +38,16 @@
 			# system
 			z-lua
 			jq
-      swayosd
 
       # zsh
       thefuck
 
       # misc
       calibre
+
+      # sway
+      swayidle
+      swayosd
 
 			############
 			swaylock-effects wlogout swaybg  #Login etc..  
