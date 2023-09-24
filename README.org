@@ -5,20 +5,96 @@
 * Table of Contents :TOC_4:
 - [[#my-nixos-setup--configuration][My NixOS Setup & Configuration]]
   - [[#installation][Installation]]
+    - [[#current-disk-partitions][Current disk partitions]]
+    - [[#installation-1][Installation]]
+    - [[#partitioning][Partitioning?]]
   - [[#configuration][Configuration]]
     - [[#sway][Sway]]
     - [[#backups][Backups]]
     - [[#waybar][Waybar]]
-    - [[#][]]
-  - [[#current-disk-partitions][Current disk partitions]]
-  - [[#installation-1][Installation]]
-  - [[#partitioning][Partitioning?]]
-  - [[#partitioning-for-virtualbox][Partitioning for VirtualBox]]
+    - [[#zsh][ZSH]]
 
 * My NixOS Setup & Configuration
   
 ** Installation
-   
+
+*** Current disk partitions
+ #+BEGIN_SRC shell
+ Disk /dev/nvme0n1: 953.87 GiB, 1024209543168 bytes, 2000409264 sectors
+ Disk model: SAMSUNG MZVL21T0HCLR-00BL7
+ Units: sectors of 1 * 512 = 512 bytes
+ Sector size (logical/physical): 512 bytes / 512 bytes
+ I/O size (minimum/optimal): 512 bytes / 512 bytes
+ Disklabel type: gpt
+ Disk identifier: E083BFE5-CA67-E346-975F-2676FC8BC1BB
+
+ Device             Start        End    Sectors   Size Type
+ /dev/nvme0n1p1      2048    1026047    1024000   500M EFI System
+ /dev/nvme0n1p2   1026048  135243775  134217728    64G Linux swap
+ /dev/nvme0n1p3 135243776 2000409230 1865165455 889.4G Linux filesystem
+
+
+ Disk /dev/mapper/cryptroot: 889.36 GiB, 954947935744 bytes, 1865132687 sectors
+ Units: sectors of 1 * 512 = 512 bytes
+ Sector size (logical/physical): 512 bytes / 512 bytes
+ I/O size (minimum/optimal): 512 bytes / 512 bytes
+ #+END_SRC
+
+
+*** Installation
+ #+BEGIN_SRC shell
+ mkfs.vfat /dev/sda1
+ cryptsetup luksFormat /dev/sda2
+ cryptsetup luksOpen /dev/sda2 nixos
+ mkfs.ext4 /dev/mapper/nixos
+ mount /dev/mapper/nixos /mnt
+ mkdir /mnt/boot
+ mount /dev/sda1 /mnt/boot
+ nixos-generate-config --root /mnt
+ vim /mnt/etc/configuration.nix # optional, but you might want to make some changes
+ nixos-install
+ reboot
+ #+END_SRC
+
+
+*** Partitioning?
+
+    #+BEGIN_SRC shell
+    sudo su # assume root
+    parted /dev/sda -- mklabel gpt
+    # make primary partition, leave 512Mb at the beginning (boot) and 8Gb at the end (swap) free
+    parted /dev/sda -- mkpart primary 512MiB -8GiB
+    # create swap partition at the end of the disk
+    parted /dev/sda -- mkpart primary linux-swap -8GiB 100%
+    # create boot partition at the beginning
+    parted /dev/sda -- mkpart ESP fat32 1MiB 512MiB
+    parted /dev/sda -- set 3 esp on
+    mkfs.ext4 -L nixos /dev/sda1
+    mkswap -L swap /dev/sda2
+    mkfs.fat -F 32 -n boot /dev/sda3
+    mount /dev/disk/by-label/nixos /mnt
+    mkdir -p /mnt/boot
+    mount /dev/disk/by-label/boot /mnt/boot
+    swapon /dev/sda2
+    nixos-generate-config --root /mnt
+    vim /mnt/etc/nixos/configuration.nix
+    # set the below inside the configuration.nix
+    # make sure that `boot.loader.grub.*` are all commented out
+    ## boot.loader.systemd-boot.enable = true;
+    ## boot.loader.efi.canTouchEfiVariables = true;
+    ## boot.loader.timeout = 2;
+    ## nix = {
+    ##    package = pkgs.nixUnstable;
+    ##    extraOptions = "experimental-features = nix-command flakes";
+    ## };
+    ## virtualisation.virtualbox.guest.enable = true;
+
+    # Set this for boot:
+    # boot.loader.grub.device = "nodev";
+    nixos-install # now, wait a while
+    #+END_SRC
+
+
 ** Configuration
 
 *** Sway
@@ -27,118 +103,7 @@
 
 *** Waybar
 
-*** 
+*** ZSH
   
 
-** Current disk partitions
-#+BEGIN_SRC shell
-Disk /dev/nvme0n1: 953.87 GiB, 1024209543168 bytes, 2000409264 sectors
-Disk model: SAMSUNG MZVL21T0HCLR-00BL7
-Units: sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 512 bytes
-I/O size (minimum/optimal): 512 bytes / 512 bytes
-Disklabel type: gpt
-Disk identifier: E083BFE5-CA67-E346-975F-2676FC8BC1BB
-
-Device             Start        End    Sectors   Size Type
-/dev/nvme0n1p1      2048    1026047    1024000   500M EFI System
-/dev/nvme0n1p2   1026048  135243775  134217728    64G Linux swap
-/dev/nvme0n1p3 135243776 2000409230 1865165455 889.4G Linux filesystem
-
-
-Disk /dev/mapper/cryptroot: 889.36 GiB, 954947935744 bytes, 1865132687 sectors
-Units: sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 512 bytes
-I/O size (minimum/optimal): 512 bytes / 512 bytes
-#+END_SRC
-
-** Installation
-#+BEGIN_SRC shell
-mkfs.vfat /dev/sda1
-cryptsetup luksFormat /dev/sda2
-cryptsetup luksOpen /dev/sda2 nixos
-mkfs.ext4 /dev/mapper/nixos
-mount /dev/mapper/nixos /mnt
-mkdir /mnt/boot
-mount /dev/sda1 /mnt/boot
-nixos-generate-config --root /mnt
-vim /mnt/etc/configuration.nix # optional, but you might want to make some changes
-nixos-install
-reboot
-#+END_SRC
-
-** Partitioning?
-
-   #+BEGIN_SRC shell
-   sudo su # assume root
-   parted /dev/sda -- mklabel gpt
-   # make primary partition, leave 512Mb at the beginning (boot) and 8Gb at the end (swap) free
-   parted /dev/sda -- mkpart primary 512MiB -8GiB
-   # create swap partition at the end of the disk
-   parted /dev/sda -- mkpart primary linux-swap -8GiB 100%
-   # create boot partition at the beginning
-   parted /dev/sda -- mkpart ESP fat32 1MiB 512MiB
-   parted /dev/sda -- set 3 esp on
-   mkfs.ext4 -L nixos /dev/sda1
-   mkswap -L swap /dev/sda2
-   mkfs.fat -F 32 -n boot /dev/sda3
-   mount /dev/disk/by-label/nixos /mnt
-   mkdir -p /mnt/boot
-   mount /dev/disk/by-label/boot /mnt/boot
-   swapon /dev/sda2
-   nixos-generate-config --root /mnt
-   vim /mnt/etc/nixos/configuration.nix
-   # set the below inside the configuration.nix
-   # make sure that `boot.loader.grub.*` are all commented out
-   ## boot.loader.systemd-boot.enable = true;
-   ## boot.loader.efi.canTouchEfiVariables = true;
-   ## boot.loader.timeout = 2;
-   ## nix = {
-   ##    package = pkgs.nixUnstable;
-   ##    extraOptions = "experimental-features = nix-command flakes";
-   ## };
-   ## virtualisation.virtualbox.guest.enable = true;
-
-   # Set this for boot:
-   # boot.loader.grub.device = "nodev";
-   nixos-install # now, wait a while
-   #+END_SRC
-
    
-** Partitioning for VirtualBox
-
-   #+BEGIN_SRC
-
-   # Create partitions
-   parted /dev/sda -- mklabel msdos
-   parted /dev/sda -- mkpart primary 1MB -8GB
-   parted /dev/sda -- mkpart primary linux-swap -8GB 100%
-
-   # Format and install
-   mkfs.ext4 -L nixos /dev/sda1
-   mkswap -L swap /dev/sda2
-   swapon /dev/sda2
-   mount /dev/disk/by-label/nixos /mnt
-   nixos-generate-config --root /mnt
-   nano /mnt/etc/nixos/configuration.nix
-   # set grub
-   nixos-install
-
-   #+END_SRC
-   
- ** Disk Encryption
- 
-   Source: https://nixos.wiki/wiki/Full_Disk_Encryption
- 
-   #+BEGIN_SRC
-   # format the disk with the luks structure
-   $ cryptsetup luksFormat /dev/sda4
-   # open the encrypted partition and map it to /dev/mapper/cryptroot
-   $ cryptsetup luksOpen /dev/sda4 cryptroot
-   # format as usual
-   $ mkfs.ext4 -L nixos /dev/mapper/cryptroot
-   # mount
-   $ mount /dev/disk/by-label/nixos /mnt
-   $ mkdir /mnt/boot
-   $ mount /dev/sda1 /mnt/boot
-   #+END_SRC
