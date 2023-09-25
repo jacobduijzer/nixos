@@ -261,6 +261,9 @@ client.focused "#FF8E0D" "#FF8E0D" "#ffffff" "#FF8E0D"
 for_window [class="Slack"] move to workspace 9
 for_window [class="Ferdium"] move to workspace 8
 for_window [instance="teams.microsoft.com"] move to workspace 10
+
+# reload kanshi
+exec_always "systemctl --user restart kanshi.service"
 	'';
 
 
