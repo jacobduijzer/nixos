@@ -13,6 +13,7 @@
     - [[#zsh][ZSH]]
     - [[#backups][Backups]]
     - [[#waybar][Waybar]]
+  - [[#sources][Sources]]
 
 * My NixOS Setup & Configuration
   
@@ -159,3 +160,6 @@
   
 
    
+** Sources
+
+   * [[https://grahamc.com/blog/erase-your-darlings/][Erase your darlings: inspiration to create an even better system]]

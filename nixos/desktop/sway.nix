@@ -53,6 +53,26 @@
       #];
     };
 
+    services.kanshi = {
+      enable = true;
+      systemdTarget = "sway-session.target";
+      profiles = {
+        default = {
+          outputs = [
+          {
+            criteria = "IVO 0x8C44 Unknown";
+            mode = "1920x1200";
+            position = "480,0";
+          }
+          {
+            criteria = "Iiyama North America PL3288UH 1169605112752";
+            mode = "3840x2160";
+            position = "0,1200";
+          }];
+        };
+      };
+    };
+
     services.swayosd.enable = true;
     wayland.windowManager.sway = {
       enable = true;
@@ -85,12 +105,12 @@
           "*" = {
             background = "~/.dotfiles/nixos/desktop/wallpapers/nixos-wallpaper-dark.png fill";
           };
-          "eDP-1" = {
-            position = "0,1080";
-          };
-          "HDMI-A-1" = {
-            position = "0,0";
-          };
+          #"eDP-1" = {
+          #  position = "0,1080";
+          #};
+          #"HDMI-A-1" = {
+          #  position = "0,0";
+          #};
         };
 
         startup = [
