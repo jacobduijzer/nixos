@@ -53,6 +53,7 @@
 		zsh
     oh-my-zsh
     cifs-utils
+    keyutils
 	];
 
 	# Enable the OpenSSH daemon.

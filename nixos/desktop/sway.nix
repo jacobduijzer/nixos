@@ -62,13 +62,27 @@
           {
             criteria = "IVO 0x8C44 Unknown";
             mode = "1920x1200";
-            position = "480,0";
+            position = "960,0";
           }
           {
             criteria = "Iiyama North America PL3288UH 1169605112752";
             mode = "3840x2160";
             position = "0,1200";
           }];
+        };
+        rockstars = {
+          outputs = [
+            {
+              criteria = "IVO 0x8C44 Unknown";
+              mode = "1920x1200";
+              position = "320,1440";
+            }
+            {
+              criteria = "HP Inc. HP E27u G4 CN41200S9D";
+              mode = "2560x1440";
+              position = "0,0";
+            }
+          ];
         };
       };
     };
@@ -130,7 +144,7 @@
 
           "${mod}+space" = "exec ${app-menu} -show drun";
 
-          "${mod}+Mod1+space" = "exec bwm";
+          "${mod}+Mod1+space" = "exec /usr/bin/bwmenu";
           # Start browser
           "${mod}+Shift+Return" = "exec /etc/profiles/per-user/jacob/bin/vivaldi";
           # Lock screen with blur
@@ -165,6 +179,15 @@
           "${mod}+Shift+Down" = "move down";
           "${mod}+Shift+Up" = "move up";
           "${mod}+Shift+Right" = "move right";
+          # move workspace to different monitor
+          "${mod}+Control+Left" = "move workspace to output left";
+          "${mod}+Control+Down" = "move workspace to output down";
+          "${mod}+Control+Up" = "move workspace to output up";
+          "${mod}+Control+Right" = "move workspace to output right";
+          "${mod}+Control+h" = "move workspace to output left";
+          "${mod}+Control+j" = "move workspace to output down";
+          "${mod}+Control+k" = "move workspace to output up";
+          "${mod}+Control+l" = "move workspace to output right";
           # Switch to workspace
           "${mod}+1" = "workspace number 1";
           "${mod}+2" = "workspace number 2";
@@ -198,13 +221,14 @@
           "${mod}+f" = "fullscreen";
           # Toggle the current focus between tiling and floating mode
           "${mod}+Shift+space" = "floating toggle";
-          # Swap focus between the tiling area and the floating area
 
           # Scratchpad:
           "${mod}+Shift+minus" = "move scratchpad";
-          "${mod}+Ctrl+minus" = "scratchpad show";
+          "${mod}+Shift+equal" = "scratchpad show";
 
-          "${mod}+r" = "mode \"resize\"";
+          "${mod}+r" = "mode resize";
+          "${mod}+t" = "exec swaymsg lapacity 0.4";
+          "${mod}+Shift+t" = "exec swaymsg opacity 1";
 
           # Audio
           "XF86AudioStop" = "exec ${pkgs.playerctl}/bin/playerctl stop";
@@ -232,7 +256,7 @@ set $bground = "#285577"
 set $white = "#FFFFFF"
 
 # general settings
-focus_follows_mouse yes
+focus_follows_mouse no
 default_border pixel 1
 default_floating_border none
 hide_edge_borders smart
@@ -261,6 +285,9 @@ client.focused "#FF8E0D" "#FF8E0D" "#ffffff" "#FF8E0D"
 for_window [class="Slack"] move to workspace 9
 for_window [class="Ferdium"] move to workspace 8
 for_window [instance="teams.microsoft.com"] move to workspace 10
+
+# bind keyctl for bwmenu (bitwarden)
+exec --no-startup-id keyctl link @u @s
 
 # reload kanshi
 exec_always "systemctl --user restart kanshi.service"

@@ -9,10 +9,10 @@
 		packages = with pkgs; [
 			vivaldi
 			chromium
-			ferdium
-			bitwarden bitwarden-cli bitwarden-menu
+			bitwarden 
+      bitwarden-cli 
+      bitwarden-menu
 			spotify
-			slack
 			emacs
 			
 			wlr-randr
@@ -20,6 +20,11 @@
 			# misc
 			libreoffice-fresh
       microsoft-edge
+
+      # communication
+			ferdium
+			slack
+      zoom-us
 
 			# development
 			jetbrains.rider
@@ -39,6 +44,7 @@
 			# system
 			z-lua
 			jq
+      unzip
 
       # zsh
       thefuck

@@ -2,6 +2,7 @@
 {
 	imports = [
 		./alacritty.nix
+    ../desktop/mako.nix
 		../desktop/waybar.nix
 		../development/git.nix
 		../misc/zsh.nix
@@ -9,7 +10,6 @@
 	];
 
 	home.username = "jacob";
-
 
   #Gtk 
     gtk = {
@@ -58,7 +58,7 @@
 		};
 	};
 
-    home.sessionVariables = {
+  home.sessionVariables = {
 	    BROWSER = "google-chrome-beta";
 	    TERMINAL = "alacritty";
 	    NIXOS_OZONE_WL = "1";

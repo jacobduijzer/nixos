@@ -48,19 +48,19 @@ window#waybar {
 
     settings = [{
       height = 34;
+      tray = { spacing = 10; };
       layer = "top";
       position = "top";
-      tray = { spacing = 10; };
-      modules-left = [ "clock" "sway/mode"  ];
-      modules-center = [ "sway/workspaces" ];
-      modules-right = [
-        "pulseaudio"
-        "network"
-        "network#wired"
-        "battery"
-      ];
+        modules-left = [ "clock" "sway/mode"  ];
+        modules-center = [ "sway/workspaces" ];
+        modules-right = [
+          "pulseaudio"
+          "network"
+          "network#wired"
+          "battery"
+        ];
 
-      battery = {
+            battery = {
         format = "{icon} {capacity}%";
         format-alt = "{icon} {time}";
         format-charging = " {capacity}%";
