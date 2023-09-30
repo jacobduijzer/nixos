@@ -5,7 +5,7 @@
 	users.users.jacob = {
 		isNormalUser = true;
 		description = "Jacob Duijzer";
-		extraGroups = [ "networkmanager" "wheel" "docker" ];
+		extraGroups = [ "networkmanager" "wheel" "docker" "video" ];
 		packages = with pkgs; [
 			vivaldi
 			chromium
@@ -40,6 +40,8 @@
 			viewnior                                  #image viewr
 			imagemagick
       swappy
+      digikam
+      darktable
 
 			# system
 			z-lua

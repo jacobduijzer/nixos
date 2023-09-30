@@ -244,9 +244,11 @@
           # Source volume toggle mute
           "XF86AudioMicMute" =  "exec swayosd --input-volume mute-toggle";
           # Brightness raise
-          "XF86MonBrightnessUp" = "exec ${pkgs.swayosd} --brightness raise";
+          "XF86MonBrightnessUp" = "exec light -A 5";
+          "XF86MonBrightnessUp+shift" = "exec light -s sysfs/leds/tpacpi::kbd_backlight -S 100";
           # Brightness lower
-          "XF86MonBrightnessDown" = "exec ${pkgs.swayosd} --brightness lower";
+          "XF86MonBrightnessDown" = "exec light -U 5";
+          "XF86MonBrightnessDown+shift" = "exec light -s sysfs/leds/tpacpi::kbd_backlight -S 0";
         };
       };
 	extraConfig = ''

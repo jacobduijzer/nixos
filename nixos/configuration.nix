@@ -56,6 +56,8 @@
     keyutils
 	];
 
+  programs.light.enable = true;
+
 	# Enable the OpenSSH daemon.
 	services.openssh.enable = true;
 
