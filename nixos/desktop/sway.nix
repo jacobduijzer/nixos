@@ -84,6 +84,20 @@
             }
           ];
         };
+        itandcare = {
+          outputs = [
+            {
+              criteria = "Dell Inc. DELL U2415 7MT016C93KPS";
+              mode = "1920x1200";
+              position = "0,0";
+            }
+            {
+              criteria = "IVO 0x8C44 Unknown";
+              mode = "1920x1200";
+              position = "0,1200";
+            }
+          ];
+        };
       };
     };
 

@@ -40,7 +40,7 @@
 			viewnior                                  #image viewr
 			imagemagick
       swappy
-      digikam
+      rawtherapee
       darktable
 
 			# system

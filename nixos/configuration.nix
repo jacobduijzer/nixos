@@ -54,6 +54,7 @@
     oh-my-zsh
     cifs-utils
     keyutils
+    usbutils
 	];
 
   programs.light.enable = true;
