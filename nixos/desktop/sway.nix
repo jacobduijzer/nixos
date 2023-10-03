@@ -255,6 +255,8 @@
           "XF86AudioLowerVolume" = "exec swayosd --output-volume lower";
           # Sink volume toggle mute
           "XF86AudioMute" = "exec swayosd --output-volume mute-toggle";
+          # Mute input
+          "XF86AudioMute+Shift" = "exec swayosd --input-volume mute-toggle";
           # Source volume toggle mute
           "XF86AudioMicMute" =  "exec swayosd --input-volume mute-toggle";
           # Brightness raise

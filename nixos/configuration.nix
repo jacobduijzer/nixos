@@ -48,13 +48,17 @@
 		k3d
 		killall
 		sqlite
-		cmake
-		gcc
 		zsh
     oh-my-zsh
     cifs-utils
     keyutils
     usbutils
+
+    # development
+    python3
+    gcc
+    gnumake
+    cmake
 	];
 
   programs.light.enable = true;

@@ -32,6 +32,8 @@
 			dotnet-sdk_7
 			dotnet-aspnetcore_7
 			dotnet-runtime_7
+      nodejs_18
+      yarn
 
 			# image
 			gimp
@@ -47,6 +49,7 @@
 			z-lua
 			jq
       unzip
+      ydotool
 
       # zsh
       thefuck

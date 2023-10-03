@@ -44,6 +44,7 @@ window#waybar {
 	padding: 4px;
 	margin: 4px;
 }
+
     '';
 
     settings = [{
@@ -89,9 +90,9 @@ window#waybar {
           phone = "";
           portable = "";
         };
-        format-muted = "󰝟 {format_source}";
+        format-muted = "<span color='red'>󰝟</span> {format_source}";
         format-source = " {volume}%";
-        format-source-muted = "";
+        format-source-muted = "<span color='red'></span>";
         on-click = "pavucontrol";
       };
 
