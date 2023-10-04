@@ -17,6 +17,18 @@ window#waybar {
     background: transparent;
     color: #bebebe;
 }
+button {
+    /* Use box-shadow instead of border so the text isn't offset */
+    box-shadow: inset 0 -3px transparent;
+    /* Avoid rounded borders under each button name */
+    border: none;
+    border-radius: 0;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+button:hover {
+    background: inherit;
+}
 
 #workspaces button {
     color: #bebebe;
@@ -26,10 +38,15 @@ window#waybar {
     border-radius: 4px;
 }
 
+#workspaces button:hover {
+}
+
+
 #workspaces button.focused {
     color: white;
     font-weight: 900;
 }
+
 
 @keyframes critical {
     to {
