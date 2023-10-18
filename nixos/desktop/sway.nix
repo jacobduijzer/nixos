@@ -37,20 +37,20 @@
       enable = true;
       timeouts = [
         {
-          timeout = 295;
-          command = "${pkgs.libnotify}/bin/notify-send 'Locking in 5 seconds' -t 5000";
+          timeout = 285;
+          command = "${pkgs.libnotify}/bin/notify-send 'Locking in 5 seconds' -t 15000";
         }
         {
           timeout = 300;
           command = "${pkgs.swaylock}/bin/swaylock";
         }
       ];
-      #events = [
-      #  {
-      #    event = "before-sleep";
-      #    command = "${pkgs.swaylock}/bin/swaylock";
-      #  }
-      #];
+      events = [
+        {
+          event = "before-sleep";
+          command = "${pkgs.swaylock}/bin/swaylock";
+        }
+      ];
     };
 
     services.kanshi = {
@@ -68,6 +68,17 @@
             criteria = "Iiyama North America PL3288UH 1169605112752";
             mode = "3840x2160";
             position = "0,1200";
+          }];
+        };
+        living = {
+          outputs = [{
+            criteria = "Iiyama North America PLX2483H 1127940905490";
+            mode = "1920x1080";
+            position = "0,0";
+          }{
+            criteria = "IVO 0x8C44 Unknown";
+            mode = "1920x1200";
+            position = "0,1080";
           }];
         };
         rockstars = {
@@ -98,7 +109,20 @@
             }
           ];
         };
-      };
+        itandcare2 = {
+          outputs = [
+            {
+              criteria = "Dell Inc. DELL U2415 7MT016CD0J7S";
+              mode = "1920x1200";
+              position = "0,0";
+            }
+            {
+              criteria = "IVO 0x8C44 Unknown";
+              mode = "1920x1200";
+              position = "0,1200";
+            }
+          ];
+        };      };
     };
 
     services.swayosd.enable = true;
@@ -222,7 +246,7 @@
           "${mod}+Shift+6" = "move container to workspace number 6";
           "${mod}+Shift+7" = "move container to workspace number 7";
           "${mod}+Shift+8" = "move container to workspace number 8";
-          "${mod}+Shift+9" = "move container to workspace number 9";
+          "${mod}+sHIFT+9" = "MOve container to workspace number 9";
           "${mod}+Shift+0" = "move container to workspace number 10";
           # Layout
           "${mod}+b" = "splith";
@@ -241,7 +265,7 @@
           "${mod}+Shift+equal" = "scratchpad show";
 
           "${mod}+r" = "mode resize";
-          "${mod}+t" = "exec swaymsg lapacity 0.4";
+          "${mod}+t" = "exec swaymsg opacity 0.4";
           "${mod}+Shift+t" = "exec swaymsg opacity 1";
 
           # Audio
@@ -261,10 +285,10 @@
           "XF86AudioMicMute" =  "exec swayosd --input-volume mute-toggle";
           # Brightness raise
           "XF86MonBrightnessUp" = "exec light -A 5";
-          "XF86MonBrightnessUp+shift" = "exec light -s sysfs/leds/tpacpi::kbd_backlight -S 100";
+          "XF86MonBrightnessUp+shift" = "exec light -s sysfs/leds/tpacpi::kbd_backlight -A 100";
           # Brightness lower
           "XF86MonBrightnessDown" = "exec light -U 5";
-          "XF86MonBrightnessDown+shift" = "exec light -s sysfs/leds/tpacpi::kbd_backlight -S 0";
+          "XF86MonBrightnessDown+shift" = "exec light -s sysfs/leds/tpacpi::kbd_backlight -U 100";
         };
       };
 	extraConfig = ''
@@ -300,8 +324,9 @@ workspace 0 output $monitorLaptop
 client.focused "#FF8E0D" "#FF8E0D" "#ffffff" "#FF8E0D"
 
 # move to workspaces
-for_window [class="Slack"] move to workspace 9
+for_window [class="Spotify"] move to workspace 7
 for_window [class="Ferdium"] move to workspace 8
+for_window [class="Slack"] move to workspace 9
 for_window [instance="teams.microsoft.com"] move to workspace 10
 
 # bind keyctl for bwmenu (bitwarden)

@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 {
-  programs.mako = {
+  services.mako = {
     enable = true;
     defaultTimeout = 5000;
     anchor = "top-center";

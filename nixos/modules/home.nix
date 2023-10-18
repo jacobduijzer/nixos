@@ -43,23 +43,24 @@
 		mimeApps = {
 			enable = true;
 			defaultApplications = {
-				"application/x-extension-htm" = [ "/etc/profiles/per-user/jacob/bin/vivaldi" ];
-				"application/x-extension-html" = [ "/etc/profiles/per-user/jacob/bin/vivaldi" ];
-				"application/x-extension-shtml" = [ "/etc/profiles/per-user/jacob/bin/vivaldi" ];
-				"application/x-extension-xht" = [ "/etc/profiles/per-user/jacob/bin/vivaldi" ];
-				"application/x-extension-xhtml" = [ "/etc/profiles/per-user/jacob/bin/vivaldi" ];
-				"application/x-extension-xhtml+xml" = [ "/etc/profiles/per-user/jacob/bin/vivaldi" ];
+				"application/x-extension-htm" = [ "vivaldi-stable.desktop" ];
+				"application/x-extension-html" = [ "vivaldi-stable.desktop" ];
+				"application/x-extension-shtml" = [ "vivaldi-stable.desktop" ];
+				"application/x-extension-xht" = [ "vivaldi-stable.desktop" ];
+				"application/x-extension-xhtml" = [ "vivaldi-stable.desktop" ];
+				"application/x-extension-xhtml+xml" = [ "vivaldi-stable.desktop" ];
 				"text/html" = [ "/etc/profiles/per-user/jacob/bin/vivaldi" ];
-				"x-scheme-handler/chrome" = [ "/etc/profiles/per-user/jacob/bin/vivaldi" ];
-				"x-scheme-handler/ftp" = [ "/etc/profiles/per-user/jacob/bin/vivaldi" ];
-				"x-scheme-handler/http" = [ "/etc/profiles/per-user/jacob/bin/vivaldi" ];
-				"x-scheme-handler/https" = [ "/etc/profiles/per-user/jacob/bin/vivaldi" ];
+				"x-scheme-handler/chrome" = [ "vivaldi-stable.desktop" ];
+				"x-scheme-handler/ftp" = [ "vivaldi-stable.desktop" ];
+				"x-scheme-handler/http" = [ "vivaldi-stable.desktop" ];
+				"x-scheme-handler/https" = [ "vivaldi-stable.desktop" ];
 			};
 		};
 	};
 
   home.sessionVariables = {
-	    BROWSER = "google-chrome-beta";
+	    BROWSER = "vivaldi";
+      DOTNET_ROOT = "${pkgs.dotnet-sdk}";
 	    TERMINAL = "alacritty";
 	    NIXOS_OZONE_WL = "1";
 	    QT_QPA_PLATFORMTHEME = "gtk3";
@@ -87,7 +88,7 @@
 		    #XDG_CONFIG_HOME = "\${HOME}/.config";
 	    XDG_BIN_HOME = "\${HOME}/.local/bin";
 		    #XDG_DATA_HOME = "\${HOME}/.local/share";
-		CMAKE_MAKE_PROGRAM = "/run/current-system/sw/bin/cmake";
+      CMAKE_MAKE_PROGRAM = "/run/current-system/sw/bin/cmake";
     };
 
 	fonts.fontconfig.enable = true;

@@ -69,7 +69,7 @@ button:hover {
       tray = { spacing = 10; };
       layer = "top";
       position = "top";
-        modules-left = [ "clock" "sway/mode"  ];
+        modules-left = [ "clock" "idle_inhibitor" "sway/mode"   ];
         modules-center = [ "sway/workspaces" ];
         modules-right = [
           "pulseaudio"
@@ -121,6 +121,14 @@ button:hover {
       "network#wired" = {
         format-ethernet = "󰈁";
         format = "󰈂";
+      };
+
+      idle_inhibitor = {
+        format = "{icon}";
+        format-icons = {
+          activated = "󱜤 ";
+          deactivated = "󱠎 ";
+        };
       };
     }];
   };

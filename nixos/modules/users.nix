@@ -19,7 +19,10 @@
 			
 			# misc
 			libreoffice-fresh
+      tetex
       microsoft-edge
+      hugo
+      texlive.combined.scheme-full
 
       # communication
 			ferdium
@@ -29,11 +32,9 @@
 			# development
 			jetbrains.rider
 			gnupg pinentry
-			dotnet-sdk_7
-			dotnet-aspnetcore_7
-			dotnet-runtime_7
       nodejs_18
       yarn
+      chromedriver
 
 			# image
 			gimp
@@ -44,12 +45,14 @@
       swappy
       rawtherapee
       darktable
+      krita
 
 			# system
 			z-lua
 			jq
       unzip
       ydotool
+      dolphin
 
       # zsh
       thefuck
@@ -70,15 +73,18 @@
 			rofi mako rofimoji                        #Drawer + notifications
 			jellyfin-ffmpeg                           #multimedia libs
 			pavucontrol                               #Volume control
-			xfce.thunar                               #filemanager
 			xfce.xfconf
 			#cava                                      #Sound Visualized
 			wl-clipboard                              
 			#wf-recorder                               #Video recorder
 			sway-contrib.grimshot                     #Screenshot
 			#jffmpegthumbnailer                         #thumbnailer
+
+      # audio
 			playerctl                                 #play,pause..
 			pamixer                                   #mixer
+      easyeffects
+
 			brightnessctl                             #Brightness control
 			####GTK Customization####
 			nordic
@@ -118,11 +124,6 @@
 		'';
 	};
 
-	#thunar dencies
-	programs.thunar.plugins = with pkgs.xfce; [
-		thunar-archive-plugin
-		thunar-volman
-	];
 	services.gvfs.enable = true; 
 	services.tumbler.enable = true;
 
@@ -140,17 +141,4 @@
 		PICTURES=$HOME/Photos
 		VIDEOS=$HOME/Video 
 	'';
-
-
-   #Overlays
-    #Waybar wlr/Workspaces
-    #nixpkgs.overlays = [
-    #(self: super: {
-    #  waybar = super.waybar.overrideAttrs (oldAttrs: {
-    #    mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-    #  });
-    #})
-    #];
-
-
 }
