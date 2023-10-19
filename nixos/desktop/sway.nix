@@ -324,6 +324,7 @@ workspace 0 output $monitorLaptop
 client.focused "#FF8E0D" "#FF8E0D" "#ffffff" "#FF8E0D"
 
 # move to workspaces
+for_window [class="jetbrains-rider"] move to workspace 3
 for_window [class="Spotify"] move to workspace 7
 for_window [class="Ferdium"] move to workspace 8
 for_window [class="Slack"] move to workspace 9

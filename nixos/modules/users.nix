@@ -22,7 +22,7 @@
       tetex
       microsoft-edge
       hugo
-      texlive.combined.scheme-full
+      texlive.combined.scheme-basic
 
       # communication
 			ferdium
@@ -35,6 +35,12 @@
       nodejs_18
       yarn
       chromedriver
+      dotnet-sdk
+      dotnet-runtime
+      dotnet-aspnetcore
+      dotnet-sdk_7
+      dotnet-runtime_7
+      dotnet-aspnetcore_7
 
 			# image
 			gimp
