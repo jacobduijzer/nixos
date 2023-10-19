@@ -59,6 +59,14 @@
     gcc
     gnumake
     cmake
+    (with dotnetCorePackages; combinePackages [
+      dotnet-sdk
+      dotnet-runtime
+      dotnet-aspnetcore
+      dotnet-sdk_7
+      dotnet-runtime_7
+      dotnet-aspnetcore_7
+      ])
 	];
 
   programs.light.enable = true;
