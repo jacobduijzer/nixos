@@ -67,6 +67,7 @@
       dotnet-runtime_7
       dotnet-aspnetcore_7
       ])
+    (aspellWithDicts (dicts: with dicts; [ nl ]))
 	];
 
   programs.light.enable = true;

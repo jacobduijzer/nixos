@@ -10,7 +10,7 @@
 	];
 
 	home.username = "jacob";
-
+  #home.file.".aspell.conf".text = "data-dir ${pkgs.aspell}/lib/aspell";
   #Gtk 
     #gtk = {
     #  enable = true;

@@ -7,22 +7,26 @@
 		description = "Jacob Duijzer";
 		extraGroups = [ "networkmanager" "wheel" "docker" "video" ];
 		packages = with pkgs; [
-			vivaldi
-			chromium
-			bitwarden 
+      bitwarden 
       bitwarden-cli 
       bitwarden-menu
 			spotify
-			emacs
 			
 			wlr-randr
 			
-			# misc
+      # browsers
+      vivaldi
+      microsoft-edge
+			chromium
+
+			# writing
+			emacs
 			libreoffice-fresh
       tetex
-      microsoft-edge
       hugo
       texlive.combined.scheme-basic
+      aspell
+      aspellDicts.nl
 
       # communication
 			ferdium
@@ -31,7 +35,8 @@
 
 			# development
 			jetbrains.rider
-			gnupg pinentry
+			gnupg 
+      pinentry
       nodejs_18
       yarn
       chromedriver
@@ -40,14 +45,15 @@
 			gimp
 			grim
 			slurp
-			viewnior                                  #image viewr
+			viewnior
 			imagemagick
       swappy
-      rawtherapee
-      darktable
+      #rawtherapee
+      #darktable
       krita
 
 			# system
+			alacritty	
 			z-lua
 			jq
       unzip
@@ -63,10 +69,10 @@
       # sway
       swayidle
       swayosd
-
-			############
-			swaylock-effects wlogout swaybg  #Login etc..  
-			waybar                                    #topbar 
+			swaylock-effects 
+      wlogout 
+      swaybg  
+			waybar 
 			wayland-protocols
 			libsForQt5.qt5.qtwayland
 			kanshi                                    #laptop dncies
@@ -83,10 +89,11 @@
       # audio
 			playerctl                                 #play,pause..
 			pamixer                                   #mixer
-      easyeffects
+      #easyeffects
 
 			brightnessctl                             #Brightness control
-			####GTK Customization####
+
+			# GTK Customization
 			nordic
 			papirus-icon-theme
 			gtk3
@@ -94,18 +101,11 @@
 			xcur2png
 			rubyPackages.glib2
 			libcanberra-gtk3                          #notification sound
+
 			#########System#########
-			alacritty	
-			#gnome.gnome-system-monitor
 			libnotify
 			poweralertd
 			dbus
-			#gsettings-desktop-schemas
-			#wrapGAppsHook
-			#xdg-desktop-portal-hyprland
-			####photoshop dencies####
-			#gnome.zenity
-			#wine64Packages.waylandFull
 			curl
 			blueman
 		];
@@ -127,7 +127,6 @@
 	services.gvfs.enable = true; 
 	services.tumbler.enable = true;
 
-	#gnome outside gnome
 	programs.dconf.enable = lib.mkDefault true;
 
 	#DIRS

@@ -174,7 +174,7 @@
           mod = "Mod4";
           term = "alacritty";
           app-menu = "rofi";
-          power-menu = "nwgbar";
+          power-menu = "wlogout";
           lockscreen = "swaylock";
         in {
           # Start terminal
@@ -316,7 +316,7 @@ workspace 6 output $monitorUp
 workspace 7 output $monitorLaptop
 workspace 8 output $monitorLaptop
 workspace 9 output $monitorLaptop
-workspace 0 output $monitorLaptop
+workspace 10 output $monitorLaptop
 
 # set colors
 # class		border	bground	text
