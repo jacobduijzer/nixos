@@ -59,6 +59,7 @@
     gcc
     gnumake
     cmake
+    plantuml
     (with dotnetCorePackages; combinePackages [
       dotnet-sdk
       dotnet-runtime

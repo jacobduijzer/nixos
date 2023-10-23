@@ -40,6 +40,8 @@
       nodejs_18
       yarn
       chromedriver
+      plantuml-c4
+      openjdk19
 
 			# image
 			gimp
