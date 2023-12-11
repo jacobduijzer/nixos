@@ -33,22 +33,36 @@
       };
     };
 
-    services.swayidle = {
+    services.swayidle = 
+    let
+      #lockscript = "sudo /nix/store/95l4cd6wdr6ahi62vyabg0ps665dpjkm-physlock-13/bin/physlock -l && (swaylock -C /home/jacob/.config/swaylock/config && sudo /nix/store/95l4cd6wdr6ahi62vyabg0ps665dpjkm-physlock-13/bin/physlock -L)&";
+      lock-script = "${pkgs.swaylock}/bin/swaylock -C /home/jacob/.config/swaylock/config";
+      notify-script = "${pkgs.libnotify}/bin/notify-send 'Locking in 15 seconds' -t 15000";
+    in
+    {
       enable = true;
       timeouts = [
         {
           timeout = 285;
-          command = "${pkgs.libnotify}/bin/notify-send 'Locking in 5 seconds' -t 15000";
+          command = "${notify-script}";
         }
         {
           timeout = 300;
-          command = "${pkgs.swaylock}/bin/swaylock";
+          command = "${lock-script}";
+        }
+        {
+          timeout = 900;
+          command = "${pkgs.sway}/bin/swaymsg 'output * dpms off'";
+          resumeCommand = "${pkgs.sway}/bin/swaymsg 'output * dpms on'";
         }
       ];
       events = [
         {
           event = "before-sleep";
-          command = "${pkgs.swaylock}/bin/swaylock";
+          command = "${pkgs.libnotify}/bin/notify-send 'Going to sleep' -t 15000";
+          #command = "$lockscript";
+          
+          #command = "${pkgs.swaylock}/bin/swaylock";
         }
       ];
     };
@@ -81,7 +95,7 @@
             position = "0,1080";
           }];
         };
-        rockstars = {
+        rockstars1 = {
           outputs = [
             {
               criteria = "IVO 0x8C44 Unknown";
@@ -90,6 +104,20 @@
             }
             {
               criteria = "HP Inc. HP E27u G4 CN41200S9D";
+              mode = "2560x1440";
+              position = "0,0";
+            }
+          ];
+        };
+        rockstars2 = {
+          outputs = [
+            {
+              criteria = "IVO 0x8C44 Unknown";
+              mode = "1920x1200";
+              position = "320,1440";
+            }
+            {
+              criteria = "HP Inc. HP E27u G4 CN41200S94";
               mode = "2560x1440";
               position = "0,0";
             }
@@ -108,7 +136,7 @@
               position = "0,1200";
             }
           ];
-        };
+        };     
         itandcare2 = {
           outputs = [
             {
@@ -122,7 +150,87 @@
               position = "0,1200";
             }
           ];
-        };      };
+        };      
+        itandcare3 = {
+          outputs = [
+            {
+              criteria = "Dell Inc. DELL U2415 7MT016C92VJS";
+              mode = "1920x1200";
+              position = "0,0";
+            }
+            {
+              criteria = "IVO 0x8C44 Unknown";
+              mode = "1920x1200";
+              position = "0,1200";
+            }
+          ];
+        }; 
+        itandcare4 = {
+          outputs = [
+            {
+              criteria = "Dell Inc. DELL U2415 7MT016B10Y0S";
+              mode = "1920x1200";
+              position = "0,0";
+            }
+            {
+              criteria = "IVO 0x8C44 Unknown";
+              mode = "1920x1200";
+              position = "0,1200";
+            }
+          ];
+        }; 
+        itandcare5 = {
+          outputs = [
+            {
+              criteria = "Dell Inc. DELL U2415 7MT017541FCS";
+              mode = "1920x1200";
+              position = "0,0";
+            }
+            {
+              criteria = "IVO 0x8C44 Unknown";
+              mode = "1920x1200";
+              position = "0,1200";
+            }
+          ];
+        };
+        itandcare6 = {
+          outputs = [
+            {
+              criteria = "Dell Inc. DELL U2415 7MT016C92TMS";
+              mode = "1920x1200";
+              position = "0,0";
+            }
+            {
+              criteria = "IVO 0x8C44 Unknown";
+              mode = "1920x1200";
+              position = "0,1200";
+            }
+          ];
+        };
+        itandcare7 = {
+          outputs = [
+            {
+              criteria = "Dell Inc. DELL U2415 7MT017812Y0S";
+              mode = "1920x1200";
+              position = "0,0";
+            }
+            {
+              criteria = "IVO 0x8C44 Unknown";
+              mode = "1920x1200";
+              position = "0,1200";
+            }
+          ];
+        };
+        remotedesktop = {
+          outputs = [
+            {
+              criteria = "The X.Org Foundation 11.0 Unknown";
+              mode = "1920x1200";
+              position = "0,0";
+            }
+          ];  
+        };
+        };
     };
 
     services.swayosd.enable = true;
@@ -175,7 +283,7 @@
           term = "alacritty";
           app-menu = "rofi";
           power-menu = "wlogout";
-          lockscreen = "swaylock";
+          lockscreen = "sudo /nix/store/95l4cd6wdr6ahi62vyabg0ps665dpjkm-physlock-13/bin/physlock -l && (swaylock -C /home/jacob/.config/swaylock/config && sudo /nix/store/95l4cd6wdr6ahi62vyabg0ps665dpjkm-physlock-13/bin/physlock -L)&";
         in {
           # Start terminal
           "${mod}+Return" = "exec ${term}";
@@ -303,6 +411,12 @@ default_border pixel 1
 default_floating_border none
 hide_edge_borders smart
 
+# keyboard
+
+#input "1:1:AT_Translated_Set_2_keyboard" {
+#  xkb_file "~/.config/xkb/custom"
+#}
+
 # workspaces
 set $monitorUp HDMI-A-1
 set $monitorLaptop eDP-1
@@ -330,10 +444,14 @@ for_window [class="Ferdium"] move to workspace 8
 for_window [class="Slack"] move to workspace 9
 for_window [instance="teams.microsoft.com"] move to workspace 10
 
+seat * {
+  hide_cursor 2000
+}
+
 # bind keyctl for bwmenu (bitwarden)
 exec --no-startup-id keyctl link @u @s
 
-# reload kanshi
+# Reset kansi
 exec_always "systemctl --user restart kanshi.service"
 	'';
 

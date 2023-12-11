@@ -69,7 +69,7 @@ button:hover {
       tray = { spacing = 10; };
       layer = "top";
       position = "top";
-        modules-left = [ "clock" "idle_inhibitor" "sway/mode"   ];
+        modules-left = [ "clock" "idle_inhibitor" "sway/mode" "custom/aoc1" "custom/aoc2" ];
         modules-center = [ "sway/workspaces" ];
         modules-right = [
           "pulseaudio"
@@ -78,7 +78,22 @@ button:hover {
           "battery"
         ];
 
-            battery = {
+      "custom/aoc1" = {
+        format = " {} ";
+        exec = "/home/jacob/Projects/github/AdventOfCode/adventofcode.sh -c /home/jacob/.aoc_cookie.txt -i 3285402 -n 'Jacob Duijzer' -l 'IT&amp;Care'";
+        interval = 900;
+        on-click = "exec /etc/profiles/per-user/jacob/bin/vivaldi https://adventofcode.com/2023/leaderboard/private/view/3285402";
+      };
+
+      "custom/aoc2" = {
+        format = " {} ";
+        exec = "/home/jacob/Projects/github/AdventOfCode/adventofcode.sh -c /home/jacob/.aoc_cookie.txt -i 1538851 -n 'Jacob Duijzer' -l 'TRIT'";
+        interval = 900;
+        on-click = "exec /etc/profiles/per-user/jacob/bin/vivaldi https://adventofcode.com/2023/leaderboard/private/view/1538851";
+      };
+
+
+      battery = {
         format = "{icon} {capacity}%";
         format-alt = "{icon} {time}";
         format-charging = " {capacity}%";

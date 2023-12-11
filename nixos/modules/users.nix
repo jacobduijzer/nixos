@@ -5,7 +5,7 @@
 	users.users.jacob = {
 		isNormalUser = true;
 		description = "Jacob Duijzer";
-		extraGroups = [ "networkmanager" "wheel" "docker" "video" ];
+		extraGroups = [ "networkmanager" "wheel" "docker" "video" "input" ];
 		packages = with pkgs; [
       bitwarden 
       bitwarden-cli 
@@ -18,9 +18,11 @@
       vivaldi
       microsoft-edge
 			chromium
+      google-chrome-dev
 
 			# writing
-			emacs
+      #emacs29
+      emacs29-pgtk
 			libreoffice-fresh
       tetex
       hugo
@@ -32,6 +34,7 @@
 			ferdium
 			slack
       zoom-us
+      openfortivpn
 
 			# development
 			jetbrains.rider
@@ -41,7 +44,11 @@
       yarn
       chromedriver
       plantuml-c4
+      graphviz
       openjdk19
+      kubectl
+      docker-compose
+      sass
 
 			# image
 			gimp
@@ -53,14 +60,27 @@
       #rawtherapee
       #darktable
       krita
+      digikam
+      gImageReader
+
+      # multimedia
+      obs-studio
+      vlc
+      v4l-utils
+      wf-recorder
 
 			# system
+      bc
 			alacritty	
 			z-lua
 			jq
       unzip
-      ydotool
       dolphin
+      zip
+      libva-utils
+      pciutils
+      wdisplays
+      virtualbox
 
       # zsh
       thefuck
@@ -72,6 +92,7 @@
       swayidle
       swayosd
 			swaylock-effects 
+      physlock
       wlogout 
       swaybg  
 			waybar 

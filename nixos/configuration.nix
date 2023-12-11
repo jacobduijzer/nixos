@@ -1,5 +1,4 @@
 { config, pkgs, lib, input, modulesPath, ... }:
-
 {
 	imports = [
 		./hardware-configuration.nix
@@ -19,8 +18,16 @@
 
 		# development
 		./development/k3s.nix
-      
 	];
+
+	nixpkgs = {
+    config = {
+    allowUnfree = true;
+    packageOverrides = pkgs: {
+    unstable = import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz") { config.allowUnfree = true; };
+    };
+  };
+  };
 
 	# Use the systemd-boot EFI boot loader.
 	boot.loader.systemd-boot.enable = true;
@@ -53,8 +60,13 @@
     cifs-utils
     keyutils
     usbutils
+    xdg-utils
 
     # development
+    unstable.jetbrains.rust-rover
+    rustc
+    rustup
+    cargo
     python3
     gcc
     gnumake
@@ -67,6 +79,9 @@
       dotnet-sdk_7
       dotnet-runtime_7
       dotnet-aspnetcore_7
+      dotnet-sdk_8
+      dotnet-runtime_8
+      dotnet-aspnetcore_8
       ])
     (aspellWithDicts (dicts: with dicts; [ nl ]))
 	];
@@ -74,7 +89,35 @@
   programs.light.enable = true;
 
 	# Enable the OpenSSH daemon.
-	services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    settings = {
+      Macs = [
+        "hmac-sha2-512-etm@openssh.com"
+        "hmac-sha1"
+      ];
+    };
+  };
+
+  # ydotool systemd service
+  #systemd.user.services.ydotool.wantedBy = [ "default.target" ];
+
+	#systemd.user.services = {
+	#	ydotoold = {
+	#		Unit = {
+	#			Description = "An auto-input utility for wayland";
+	#			Documentation = [ "man:ydotool(1)" "man:ydotoold(8)" ];
+	#		};
+	#		
+	#		Service = {
+	#			ExecStart = "/run/current-system/sw/bin/ydotoold --socket-path /tmp/ydotools";
+	#		};
+
+	#		Install = {
+	#			WantedBy = ["default.target"];
+	#		};
+	#	};
+	#};
 
 	services.pcscd.enable = true;
 	programs.gnupg.agent = {
@@ -89,9 +132,32 @@
 	# Wayland related
 	#security.polkit.enable = true;
 	#hardware.opengl.enable = true;
+
+  hardware.opengl = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver
+      vaapiIntel
+      vaapiVdpau
+      libvdpau-va-gl
+    ];
+  };
+
 	security.pam.services.swaylock = {
 		text = "auth include login";
 	};
+
+  security.sudo.enable = true;
+  security.sudo.extraRules = [
+  {
+    runAs = "root";
+    users = [ "jacob" ];
+    commands = [
+    {
+      command = "${pkgs.physlock}/bin/physlock"; 
+      options = [ "NOPASSWD" ];
+    }];
+  }];
 
 	# fonts
 	fonts.packages = with pkgs; [
@@ -115,6 +181,13 @@
 	environment.shells = with pkgs; [ zsh ];
 	programs.zsh.enable = true;
 	users.defaultUserShell = pkgs.zsh;
+
+  # remote desktop connections
+  # services.x2goserver.enable = true;
+
+  services.xrdp.enable = true;
+  services.xrdp.defaultWindowManager = "sway";
+  services.xrdp.openFirewall = true;
 
   # backups
   services.borgbackup.jobs.jacobs-documents = {

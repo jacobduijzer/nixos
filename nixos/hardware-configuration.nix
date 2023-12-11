@@ -9,9 +9,14 @@
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
+  boot.initrd.kernelModules = [ 
+    "v4l2loopback"
+  ];
   boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  boot.kernelParams = [ "i915.enable_guc=2" ];
+  boot.extraModulePackages = [
+    config.boot.kernelPackages.v4l2loopback.out
+  ];
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/a6e44e89-3d49-4439-a943-9034c4973b61";

@@ -75,8 +75,10 @@
 	    WLR_NO_HARDWARE_CURSORS = "1"; # if no cursor,uncomment this line  
 	    # GBM_BACKEND = "nvidia-drm";
 	    CLUTTER_BACKEND = "wayland";
-	    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-	    LIBVA_DRIVER_NAME = "nvidia";
+	    #__GLX_VENDOR_LIBRARY_NAME = "nvidia";
+	    #LIBVA_DRIVER_NAME = "nvidia";
+	    LIBVA_DRIVER_NAME = "i965";
+
 	    WLR_RENDERER = "vulkan";
 	    __NV_PRIME_RENDER_OFFLOAD="1";
 	    XDG_CURRENT_DESKTOP = "Sway";
