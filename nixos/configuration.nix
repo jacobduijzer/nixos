@@ -5,7 +5,6 @@
  		
 		# config
 		./modules/users.nix
-		./modules/greetd.nix
 		./misc/vim.nix
     ./misc/network-mounts.nix
 
@@ -14,7 +13,8 @@
 		./audio/bluetooth.nix
 
 		# desktop
-		./desktop/sway.nix
+		#./desktop/sway.nix
+    ./desktop/i3.nix
 
 		# development
 		./development/k3s.nix
@@ -42,9 +42,6 @@
 
 	# Select internationalisation properties.
 	i18n.defaultLocale = "en_US.UTF-8";
-
-	# Enable the X11 windowing system.
-	# services.xserver.enable = true;
 
 	nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -86,7 +83,7 @@
     (aspellWithDicts (dicts: with dicts; [ nl ]))
 	];
 
-  programs.light.enable = true;
+  #programs.light.enable = true;
 
 	# Enable the OpenSSH daemon.
   services.openssh = {
@@ -143,9 +140,9 @@
     ];
   };
 
-	security.pam.services.swaylock = {
-		text = "auth include login";
-	};
+	#security.pam.services.swaylock = {
+	#	text = "auth include login";
+	#};
 
   security.sudo.enable = true;
   security.sudo.extraRules = [
@@ -181,6 +178,9 @@
 	environment.shells = with pkgs; [ zsh ];
 	programs.zsh.enable = true;
 	users.defaultUserShell = pkgs.zsh;
+
+  # battery life
+  services.tlp.enable = true;
 
   # remote desktop connections
   # services.x2goserver.enable = true;

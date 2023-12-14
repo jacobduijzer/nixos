@@ -88,6 +88,9 @@
       # misc
       calibre
 
+      # i3
+      arandr
+
       # sway
       swayidle
       swayosd
@@ -134,18 +137,18 @@
 		];
 	};
 
-	programs = {
-		sway = {
-			enable = true;
-		};
-	};
+	#programs = {
+	#	sway = {
+	#		enable = true;
+	#	};
+	#};
 
 	#swaylock pass verify
-	security.pam.services.swaylock = {
-		text = ''
-			auth include login
-		'';
-	};
+	#security.pam.services.swaylock = {
+	#	text = ''
+	#		auth include login
+	#	'';
+	#};
 
 	services.gvfs.enable = true; 
 	services.tumbler.enable = true;
