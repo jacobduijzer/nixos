@@ -1,5 +1,5 @@
 {
-	description = "sway+waybar";
+	description = "nixos+i3";
 
 	inputs = {
 		nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";

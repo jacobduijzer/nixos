@@ -88,29 +88,30 @@
       # misc
       calibre
 
-      # i3
+      # i3 / xwindow
       arandr
+      feh
 
       # sway
-      swayidle
-      swayosd
-			swaylock-effects 
-      physlock
-      wlogout 
-      swaybg  
-			waybar 
-			wayland-protocols
-			libsForQt5.qt5.qtwayland
-			kanshi                                    #laptop dncies
-			rofi mako rofimoji                        #Drawer + notifications
-			jellyfin-ffmpeg                           #multimedia libs
-			pavucontrol                               #Volume control
-			xfce.xfconf
-			#cava                                      #Sound Visualized
-			wl-clipboard                              
-			#wf-recorder                               #Video recorder
-			sway-contrib.grimshot                     #Screenshot
-			#jffmpegthumbnailer                         #thumbnailer
+      #swayidle
+      #swayosd
+			#swaylock-effects 
+      #physlock
+      #wlogout 
+      #swaybg  
+			#waybar 
+			#wayland-protocols
+			#libsForQt5.qt5.qtwayland
+			#kanshi                                    #laptop dncies
+			#rofi mako rofimoji                        #Drawer + notifications
+			#jellyfin-ffmpeg                           #multimedia libs
+			#pavucontrol                               #Volume control
+			#xfce.xfconf
+			##cava                                      #Sound Visualized
+			#wl-clipboard                              
+			##wf-recorder                               #Video recorder
+			#sway-contrib.grimshot                     #Screenshot
+			##jffmpegthumbnailer                         #thumbnailer
 
       # audio
 			playerctl                                 #play,pause..

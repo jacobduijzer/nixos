@@ -1,4 +1,4 @@
-# Inspired by: https://github.com/PrimaMateria/nixos/blob/master/modules/i3.nix
+# Inspired by: https://github.com/PrimaMateria/nixos/blob/master/modules/i3.niu
 {config, lib, pkgs, ... }:
 let
   mod = "Mod4";
@@ -13,8 +13,14 @@ let
   cmdBrowser = "/etc/profiles/per-user/jacob/bin/vivaldi";
   cmdTerminal = "/etc/profiles/per-user/jacob/bin/alacritty";
 
+  setWallpaper = w: "exec --no-startup-id $pkgs.feh}/bin/feh feh --bg-center /home/jacob/.dotfiles/nixos/desktop/wallpapers/nixos-wallpaper-blue.png";
+  #setWallpaper = w: "exec --no-startup-id ${pkgs.nitrogen}/bin/nitrogen --bg-center ~/.config/i3/wallpapers/${w}";
 
 in {
+  imports = [
+    ./polybar.nix
+  ];
+
   xsession.windowManager.i3 = {
     enable = true;
     config = {
@@ -77,6 +83,12 @@ in {
           "${mod}+space" = "exec ${cmdAppMenu}";
       };
 
+      bars = [];
+
+      startup = [
+        
+      ];
+
     };
       extraConfig = ''
         title_align center
@@ -85,4 +97,45 @@ in {
       '';
 
   };
+
+  #services.polybar = {
+  #  enable = true;
+	#	package = pkgs.polybar.override {
+  #    i3Support = true;
+  #    alsaSupport = true;
+  #    iwSupport = true;
+  #    githubSupport = true;
+  #  };
+  #  config = {
+  #    #"bar/top" = {
+  #    #  monitor = "eDP1";
+  #    #  width = "100%";
+  #    #  height = "3%";
+  #    #  radius = 0;
+  #    #  # Just sticking them together in the center for now
+  #    #  modules-center = "date i3";
+  #    #};
+  #    #"bar/external" = {
+  #    #  "inherit" = "bar/main";
+  #    #  monitor = "HDMI-1";
+  #    #  bottom = false;
+  #    #  modules-center = "i3";
+  #    #};
+  #    "module/date" = {
+  #      type = "internal/date";
+  #      internal = 5;
+  #      date = "%Y-%m-%d";
+  #      time = "%H:%M";
+  #      label = "%date% %time%";
+  #    };
+  #    "module/i3" = {
+  #      type = "internal/i3";
+  #      scroll-up = "i3wm-wsnext";
+  #      scroll-down = "i3wm-wsprev";
+  #    };
+  #  };
+  #  script = ''
+  #  ${cmdPolybar} top &
+  #  '';
+  #};
 }  
