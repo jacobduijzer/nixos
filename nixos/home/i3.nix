@@ -30,7 +30,7 @@ in {
 
       #fonts = ["DejaVu Sans Mono, FontAwesome 6"];
       gaps = {
-        inner = 15;
+        inner = 10;
       };
 
       colors = {
@@ -56,6 +56,15 @@ in {
         { workspace = "10"; output = "${monitorLaptop}"; }
       ];
       
+      window  = {
+        hideEdgeBorders = "none";
+        commands = [
+          {
+            criteria = { class = "(?i)macs"; };
+            command = "floating enable";
+          }
+        ];
+      };
       keybindings = lib.mkOptionDefault {
 					#"${mod}+BackSpace" = "workspace back_and_forth";
           "${mod}+1" = "workspace number 1";
@@ -80,6 +89,24 @@ in {
           "${mod}+Shift+8" = "move container to workspace number 8";
           "${mod}+Shift+9" = "move container to workspace number 9";
 
+          # toggle between horizontal or vertical split
+          "${mod}+BackSpace" = "split toggle";
+
+          # change gaps
+          "${mod}+minus" = "gaps inner current minus 2";
+          "${mod}+plus" = "gaps inner current plus 2";
+
+          # reload & restart i3
+          "${mod}+Shift+r" = "restart";
+          "${mod}+Shitf+c" = "reload";
+
+          # scratchpad
+          "${mod}+Shift+minus" = "move scratchpad";
+          "${mod}+Ctrl+minus" = "scratchpad show";
+
+          # toggle tiling / floating
+          "${mod}+Shift+f" = "floating toggle";
+
           "${mod}+Return" = "exec ${cmdTerminal}";
           "${mod}+Shift+Return" = "exec ${cmdBrowser}";
           "${mod}+space" = "exec ${cmdAppMenu}";
@@ -101,45 +128,4 @@ in {
       '';
 
   };
-
-  #services.polybar = {
-  #  enable = true;
-	#	package = pkgs.polybar.override {
-  #    i3Support = true;
-  #    alsaSupport = true;
-  #    iwSupport = true;
-  #    githubSupport = true;
-  #  };
-  #  config = {
-  #    #"bar/top" = {
-  #    #  monitor = "eDP1";
-  #    #  width = "100%";
-  #    #  height = "3%";
-  #    #  radius = 0;
-  #    #  # Just sticking them together in the center for now
-  #    #  modules-center = "date i3";
-  #    #};
-  #    #"bar/external" = {
-  #    #  "inherit" = "bar/main";
-  #    #  monitor = "HDMI-1";
-  #    #  bottom = false;
-  #    #  modules-center = "i3";
-  #    #};
-  #    "module/date" = {
-  #      type = "internal/date";
-  #      internal = 5;
-  #      date = "%Y-%m-%d";
-  #      time = "%H:%M";
-  #      label = "%date% %time%";
-  #    };
-  #    "module/i3" = {
-  #      type = "internal/i3";
-  #      scroll-up = "i3wm-wsnext";
-  #      scroll-down = "i3wm-wsprev";
-  #    };
-  #  };
-  #  script = ''
-  #  ${cmdPolybar} top &
-  #  '';
-  #};
 }  
