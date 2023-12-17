@@ -79,6 +79,9 @@
       pciutils
       wdisplays
       virtualbox
+      xclip
+      unclutter
+      xautolock
 
       # zsh
       thefuck

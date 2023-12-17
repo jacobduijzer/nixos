@@ -10,12 +10,10 @@ let
   colorDominant = "#FF8E0D";
 
   cmdAppMenu = "rofi -show drun";
+  cmdBitwarden = "/usr/bin/bwmenu";
   cmdBrowser = "/etc/profiles/per-user/jacob/bin/vivaldi";
   cmdLock = "${pkgs.i3lock-fancy-rapid}/bin/i3lock-fancy-rapid 10 2";
-  #cmdLock = "/home/jacob/.dotfiles/scripts/blur-lock.sh";
-  cmdPolybar = "exec --no-startup-id /home/jacob/.dotfiles/scripts/polybar.sh";
   cmdTerminal = "/etc/profiles/per-user/jacob/bin/alacritty";
-  cmdWallpaper = "exec --no-startup-id ${pkgs.feh}/bin/feh feh --bg-center /home/jacob/.dotfiles/nixos/desktop/wallpapers/nixos-wallpaper-blue.png";
 
 
 in {
@@ -89,6 +87,24 @@ in {
           "${mod}+Shift+8" = "move container to workspace number 8";
           "${mod}+Shift+9" = "move container to workspace number 9";
 
+          # change focus, vi bindings
+          "${mod}+h" = "focus left";
+          "${mod}+j" = "focus down";
+          "${mod}+k" = "focus up";
+          "${mod}+l" = "focus right";
+
+          # move windows in workspace, vi bindings
+          "${mod}+Shift+h" = "move left";
+          "${mod}+Shift+j" = "move down";
+          "${mod}+Shift+k" = "move up";
+          "${mod}+Shift+l" = "move right";
+
+          # move windows to workspace, vi bindings
+          "${mod}+Ctrl+h" = "move workspace to output left";
+          "${mod}+Ctrl+j" = "move workspace to output down";
+          "${mod}+Ctrl+k" = "move workspace to output up";
+          "${mod}+Ctrl+l" = "move workspace to output right";
+
           # toggle between horizontal or vertical split
           "${mod}+BackSpace" = "split toggle";
 
@@ -110,14 +126,26 @@ in {
           "${mod}+Return" = "exec ${cmdTerminal}";
           "${mod}+Shift+Return" = "exec ${cmdBrowser}";
           "${mod}+space" = "exec ${cmdAppMenu}";
+          "${mod}+Mod1+space" = "exec ${cmdBitwarden}";
           "${mod}+Shift+Escape" = "exec ${cmdLock}";
+
+          # volume keys
+          "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +1%";
+          "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -1%";
+
+          #screenshots
+          "${mod}+Print" = "exec ${pkgs.flameshot}/bin/flameshot gui";
       };
 
       bars = [];
 
       startup = [
          { command = "$cmdWallpaper"; notification = false; }
-         { command = "$cmdPolybar"; notification = false; }
+         { command = "/home/jacob/.dotfiles/scripts/polybar.sh"; notification = false; }
+         { command = "${pkgs.unclutter}/bin/unclutter -idle 2 -jitter 5 -noevents"; }
+         { command = "${pkgs.feh}/bin/feh --bg-center /home/jacob/.dotfiles/nixos/desktop/wallpapers/nixos-wallpaper-blue.png"; }
+         { command = "${pkgs.xautolock}/bin/xautolock -time 10 -locker \"i3lock-fancy-rapid 10 2\""; }
+
       ];
 
     };

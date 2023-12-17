@@ -8,8 +8,7 @@ CONFIG_FILE="$HOME/.config/polybar/config.ini"
 # Add this script to your wm startup file.
 
 # Terminate already running bar instances
-#polybar-msg cmd quit
-killall -q polybar
+kill $(ps ax | grep polybar | grep reload | awk '{print $1}')
 
 loglevel=info
 
