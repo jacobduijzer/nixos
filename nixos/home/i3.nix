@@ -1,4 +1,4 @@
-# Inspired by: https://github.com/PrimaMateria/nixos/blob/master/modules/i3.niu
+# Inspired by: https://github.com/PrimaMateria/nixos/blob/master/modules/i3.nix
 {config, lib, pkgs, ... }:
 let
   mod = "Mod4";
@@ -11,10 +11,12 @@ let
 
   cmdAppMenu = "rofi -show drun";
   cmdBrowser = "/etc/profiles/per-user/jacob/bin/vivaldi";
+  cmdLock = "${pkgs.i3lock-fancy-rapid}/bin/i3lock-fancy-rapid 10 2";
+  #cmdLock = "/home/jacob/.dotfiles/scripts/blur-lock.sh";
+  cmdPolybar = "exec --no-startup-id /home/jacob/.dotfiles/scripts/polybar.sh";
   cmdTerminal = "/etc/profiles/per-user/jacob/bin/alacritty";
+  cmdWallpaper = "exec --no-startup-id ${pkgs.feh}/bin/feh feh --bg-center /home/jacob/.dotfiles/nixos/desktop/wallpapers/nixos-wallpaper-blue.png";
 
-  setWallpaper = w: "exec --no-startup-id $pkgs.feh}/bin/feh feh --bg-center /home/jacob/.dotfiles/nixos/desktop/wallpapers/nixos-wallpaper-blue.png";
-  #setWallpaper = w: "exec --no-startup-id ${pkgs.nitrogen}/bin/nitrogen --bg-center ~/.config/i3/wallpapers/${w}";
 
 in {
   imports = [
@@ -28,7 +30,7 @@ in {
 
       #fonts = ["DejaVu Sans Mono, FontAwesome 6"];
       gaps = {
-        inner = 25;
+        inner = 15;
       };
 
       colors = {
@@ -81,12 +83,14 @@ in {
           "${mod}+Return" = "exec ${cmdTerminal}";
           "${mod}+Shift+Return" = "exec ${cmdBrowser}";
           "${mod}+space" = "exec ${cmdAppMenu}";
+          "${mod}+Shift+Escape" = "exec ${cmdLock}";
       };
 
       bars = [];
 
       startup = [
-        
+         { command = "$cmdWallpaper"; notification = false; }
+         { command = "$cmdPolybar"; notification = false; }
       ];
 
     };

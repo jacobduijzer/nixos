@@ -20,6 +20,7 @@
         dmenu
         i3status
         i3lock
+        i3lock-fancy-rapid
         i3blocks
         polybarFull
       ];

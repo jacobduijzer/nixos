@@ -15,22 +15,20 @@ let
   };
 
   cmdPolybar = "/home/jacob/.dotfiles/scripts/polybar.sh";
-
-  nixpkgs-unstable = import (fetchTarball {
-    url =
-      "https://github.com/nixos/nixpkgs-channels/archive/nixos-unstable.tar.gz";
-  }) { };
+  #unstable = import (fetchTarball "https://github.com/NixOs/nixpkgs/archive/nixos-unstable.tar.gz") { config.allowUnfree = true; };
+  
 in {
   services = {
     polybar = {
       enable = true;
 
-      package = nixpkgs-unstable.polybar.override {
+      package = pkgs.polybar.override {
         alsaSupport = true;
         githubSupport = true;
         mpdSupport = true;
         pulseSupport = true;
-        i3GapsSupport = true;
+        i3Support = true;
+        #i3GapsSupport = true;
       };
 
       config = let
@@ -54,7 +52,8 @@ in {
         };
       in {
         "bar/main" = fonts // {
-          monitor = "\${env:MONITOR}";
+          #monitor = "\${env:MONITOR}";
+          monitor = "eDP-1";
           height = 40;
           radius = 0;
           fixed-center = true;
@@ -92,6 +91,7 @@ in {
           #monitor = "\${env:MONITOR}";
           monitor = "eDP-1";
           width = "100%";
+          modules-center = "i3"; #"xwindow";
         };
 
         "bar/HDMI-1" = fonts // {
@@ -101,6 +101,7 @@ in {
           monitor = "HDMI-1";
           width = "100%";
           bottom = false;
+          modules-left = "date adventofcode_1 adventofcode_2";
         };
 
         "settings" = {
@@ -456,6 +457,21 @@ in {
           interval = 10;
           click-left = "${pkgs.astroid}/bin/astroid";
         };
+
+        "module/adventofcode_1" = {
+          type = "custom/script";
+          exec = "/home/jacob/Projects/github/AdventOfCode/adventofcode.sh -c /home/jacob/.aoc_cookie.txt -i 3285402 -n 'Jacob Duijzer' -l 'IT&Care'";
+          click-right = "exec /etc/profiles/per-user/jacob/bin/vivaldi https://adventofcode.com/2023/leaderboard/private/view/3285402";
+          interval = 900;
+        };
+
+        "module/adventofcode_2" = {
+          type = "custom/script";
+          exec = "/home/jacob/Projects/github/AdventOfCode/adventofcode.sh -c /home/jacob/.aoc_cookie.txt -i 1538851 -n 'Jacob Duijzer' -l 'TRIT'";
+          click-right = "exec /etc/profiles/per-user/jacob/bin/vivaldi https://adventofcode.com/2023/leaderboard/private/view/1538851";
+          interval = 900;
+        };
+
       };
 
     script = ''

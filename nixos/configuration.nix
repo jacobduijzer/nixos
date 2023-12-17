@@ -24,7 +24,7 @@
     config = {
     allowUnfree = true;
     packageOverrides = pkgs: {
-    unstable = import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz") { config.allowUnfree = true; };
+    #unstable = import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz") { config.allowUnfree = true; };
     };
   };
   };
@@ -60,7 +60,6 @@
     xdg-utils
 
     # development
-    unstable.jetbrains.rust-rover
     rustc
     rustup
     cargo
@@ -185,9 +184,9 @@
   # remote desktop connections
   # services.x2goserver.enable = true;
 
-  services.xrdp.enable = true;
-  services.xrdp.defaultWindowManager = "sway";
-  services.xrdp.openFirewall = true;
+  #services.xrdp.enable = true;
+  #services.xrdp.defaultWindowManager = "sway";
+  #services.xrdp.openFirewall = true;
 
   # backups
   services.borgbackup.jobs.jacobs-documents = {
@@ -206,6 +205,6 @@
 		options = "--delete-older-than 7d";
 	};
 
-	system.stateVersion = "23.05"; # Did you read the comment?
+	system.stateVersion = "23.11"; # Did you read the comment?
 }
 

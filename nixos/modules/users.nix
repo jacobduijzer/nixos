@@ -12,8 +12,6 @@
       bitwarden-menu
 			spotify
 			
-			wlr-randr
-			
       # browsers
       vivaldi
       microsoft-edge
@@ -67,7 +65,7 @@
       obs-studio
       vlc
       v4l-utils
-      wf-recorder
+      #wf-recorder
 
 			# system
       bc
@@ -91,6 +89,8 @@
       # i3 / xwindow
       arandr
       feh
+      rofi
+      scrot
 
       # sway
       #swayidle
@@ -116,6 +116,7 @@
       # audio
 			playerctl                                 #play,pause..
 			pamixer                                   #mixer
+      pavucontrol
       #easyeffects
 
 			brightnessctl                             #Brightness control
