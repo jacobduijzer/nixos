@@ -55,11 +55,27 @@ in {
       ];
       
       window  = {
-        hideEdgeBorders = "none";
+        hideEdgeBorders = "smart";
         commands = [
           {
             criteria = { class = "(?i)macs"; };
             command = "floating enable";
+          }
+          {
+            criteria = { class = "Spotify"; };
+            command = "move to workspace number 7";
+          }
+          {
+            criteria = { class = "Ferdi"; };
+            command = "move to workspace number 8";
+          }
+          { 
+            criteria = { class = "Slack"; };
+            command = "move to workspace number 9";
+          }
+          {
+            criteria = { class = "Microsoft Teams(.)"; };
+            command = "move to workspace number 10";
           }
         ];
       };

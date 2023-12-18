@@ -4,7 +4,7 @@
 		./hardware-configuration.nix
  		
 		# config
-		./modules/users.nix
+		./home/users.nix
 		./misc/vim.nix
     ./misc/network-mounts.nix
 
