@@ -5,7 +5,7 @@
 	users.users.jacob = {
 		isNormalUser = true;
 		description = "Jacob Duijzer";
-		extraGroups = [ "networkmanager" "wheel" "docker" "video" "input" ];
+		extraGroups = [ "networkmanager" "wheel" "docker" "video" "input" "vboxusers" ];
 		packages = with pkgs; [
       bitwarden 
       bitwarden-cli 
@@ -19,8 +19,7 @@
       google-chrome-dev
 
 			# writing
-      #emacs29
-      emacs29-pgtk
+      emacs29
 			libreoffice-fresh
       tetex
       hugo
@@ -78,10 +77,11 @@
       libva-utils
       pciutils
       wdisplays
-      virtualbox
+      #virtualbox
       xclip
       unclutter
       xautolock
+      xbindkeys
 
       # zsh
       thefuck
@@ -94,33 +94,13 @@
       feh
       rofi
       scrot
-
-      # sway
-      #swayidle
-      #swayosd
-			#swaylock-effects 
-      #physlock
-      #wlogout 
-      #swaybg  
-			#waybar 
-			#wayland-protocols
-			#libsForQt5.qt5.qtwayland
-			#kanshi                                    #laptop dncies
-			#rofi mako rofimoji                        #Drawer + notifications
-			#jellyfin-ffmpeg                           #multimedia libs
-			#pavucontrol                               #Volume control
-			#xfce.xfconf
-			##cava                                      #Sound Visualized
-			#wl-clipboard                              
-			##wf-recorder                               #Video recorder
-			#sway-contrib.grimshot                     #Screenshot
-			##jffmpegthumbnailer                         #thumbnailer
+      xorg.xdpyinfo
+      xsettingsd
 
       # audio
 			playerctl                                 #play,pause..
-			pamixer                                   #mixer
       pavucontrol
-      #easyeffects
+      pulseaudio
 
 			brightnessctl                             #Brightness control
 
@@ -141,19 +121,6 @@
 			blueman
 		];
 	};
-
-	#programs = {
-	#	sway = {
-	#		enable = true;
-	#	};
-	#};
-
-	#swaylock pass verify
-	#security.pam.services.swaylock = {
-	#	text = ''
-	#		auth include login
-	#	'';
-	#};
 
 	services.gvfs.enable = true; 
 	services.tumbler.enable = true;

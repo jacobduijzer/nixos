@@ -73,8 +73,10 @@ bindsym $mod+Print exec /home/jacob/.nix-profile/bin/flameshot gui
 # volume keys
 bindsym XF86AudioRaiseVolume exec "pactl set-sink-volume @DEFAULT_SINK@ +1%"
 bindsym XF86AudioLowerVolume exec "pactl set-sink-volume @DEFAULT_SINK@ -1%"
-bindsym XF86AudioMute exec "amixer -q sset Master,0 toggle"
-bindsym XF86Calculator exec "~/.dotfiles/polybar/modules/polybar-spotify-play-pause/spotify-play-pause.sh toggle"
+#bindsym XF86AudioMute exec "amixer -q sset Master,0 toggle"
+bindsym XF86AudioMute exec "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+#bindsym XF86Calculator exec "~/.dotfiles/polybar/modules/polybar-spotify-play-pause/spotify-play-pause.sh toggle"
+bindsym XF86Calculator exec "alacritty"
 
 # brightness
 bindsym XF86MonBrightnessDown exec "/home/jacob/scripts/brightness.sh - eDP-1 0.05"

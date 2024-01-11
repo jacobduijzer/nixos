@@ -82,7 +82,7 @@
     (aspellWithDicts (dicts: with dicts; [ nl ]))
 	];
 
-  #programs.light.enable = true;
+  programs.light.enable = true;
 
 	# Enable the OpenSSH daemon.
   services.openssh = {
@@ -187,6 +187,10 @@
   #services.xrdp.enable = true;
   #services.xrdp.defaultWindowManager = "sway";
   #services.xrdp.openFirewall = true;
+
+  virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.guest.enable = true;
+  virtualisation.virtualbox.host.enableExtensionPack = true;
 
   # backups
   services.borgbackup.jobs.jacobs-documents = {

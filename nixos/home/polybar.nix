@@ -40,7 +40,7 @@ in {
 
         primary = "#99000000";
         secondary = "#FF8E0D";
-        alert = "#ff330000";
+        alert = "#b03a3a";
 
         fonts = {
           font-0 = "JetBrainsMono Nerd Font:style=Regular:size=14";
@@ -75,7 +75,7 @@ in {
 
           modules-left = "date";
           modules-center = "i3"; #"xwindow";
-          modules-right = "volume wlan etc battery";
+          modules-right = "pulseaudio battery";
           #modules-right =
           #  "filesystem wlan eth memory cpu battery temperature headsetswitch";
 
@@ -101,7 +101,7 @@ in {
           monitor = "HDMI-1";
           width = "100%";
           bottom = false;
-          modules-left = "date adventofcode_1 adventofcode_2";
+          modules-left = "date";
         };
 
         "settings" = {
@@ -119,54 +119,32 @@ in {
           label = "%title:0:30:...%";
         };
 
-        "module/cpu" = {
-          type = "internal/cpu";
-          interval = 2;
+        "module/pulseaudio" = {
+          type = "internal/pulseaudio"; 
+          format-volume = "<ramp-volume> <label-volume>";
+          ramp-volume-0 = "󰕿";
+          ramp-volume-0-foreground = foreground;
+          ramp-volume-1 = "󰖀";
+          ramp-volume-1-foreground = foreground;
+          ramp-volume-2 = "";
+          ramp-volume-2-foreground = foreground;
 
-          format-prefix-foreground = foreground-alt;
-          format-underline = "#07ACFF";
-          label = "%percentage:3%%";
-          format-prefix = "${icons.cpu} ";
+          label-volume = "%percentage%%";
 
-          ramp-coreload-0 = "▁";
-          ramp-coreload-1 = "▂";
-          ramp-coreload-2 = "▃";
-          ramp-coreload-3 = "▄";
-          ramp-coreload-4 = "▅";
-          ramp-coreload-5 = "▆";
-          ramp-coreload-6 = "▇";
-          ramp-coreload-7 = "█";
-        };
+          label-muted = "󰖁 "; 
+          label-muted-foreground = secondary;
 
-        "module/memory" = {
-          type = "internal/memory";
-          format-prefix = "${icons.memory} ";
-          format-prefix-foreground = foreground-alt;
-          format-underline = "#05D8E8";
-          interval = 2;
-          label-active-font = 4;
-          label = "%gb_used%";
+          #use-ui-max = true;
+          #interval = 5;
+          #format-volume = "<ramp-volume> <label-volume>";
+          #label-volume = "bla";
+          #label-muted-foreground = "#666";
 
-          # Only applies if <bar-used> is used
-          bar-used-indicator = "▐";
-          bar-used-width = 10;
-          bar-used-foreground-0 = "#55aa55";
-          bar-used-foreground-1 = "#557755";
-          bar-used-foreground-2 = "#f5a70a";
-          bar-used-foreground-3 = "#ff5555";
-          bar-used-fill = "▐";
-          bar-used-empty = "▐";
-          bar-used-empty-foreground = "#444444";
+          #ramp-volume-0 = "🔈";
+          #ramp-volume-1 = "🔉";
+          #ramp-volume-2 = "🔊";
 
-          # Only applies if <ramp-used> is used
-          ramp-used-0 = "▁";
-          ramp-used-1 = "▂";
-          ramp-used-2 = "▃";
-          ramp-used-3 = "▄";
-          ramp-used-4 = "▅";
-          ramp-used-5 = "▆";
-          ramp-used-6 = "▇";
-          ramp-used-7 = "█";
+          #click-right = pavucontrol
         };
 
         "module/i3" = {
@@ -206,44 +184,6 @@ in {
           label-separator = "|";
           label-separator-padding = 2;
           label-separator-foreground = secondary;
-        };
-
-        "module/filesystem" = {
-          type = "internal/fs";
-          interval = 10;
-
-          mount-0 = "/";
-
-          format-mounted-underline = "#06E87A";
-          label-mounted = "%mountpoint%: %free%";
-        };
-
-        "module/volume" = {
-          type = "internal/volume";
-          format-volume = "<label-volume> <bar-volume>";
-          label-volume = "VOL";
-          label-volume-foreground = foreground;
-
-          format-muted-prefix = " ";
-          format-muted-foreground = foreground-alt;
-          label-muted = "sound muted";
-
-          bar-volume-width = "10";
-          bar-volume-foreground-0 = "#55aa55";
-          bar-volume-foreground-1 = "#55aa55";
-          bar-volume-foreground-2 = "#55aa55";
-          bar-volume-foreground-3 = "#55aa55";
-          bar-volume-foreground-4 = "#55aa55";
-          bar-volume-foreground-5 = "#f5a70a";
-          bar-volume-foreground-6 = "#ff5555";
-          bar-volume-gradient = true;
-          bar-volume-indicator = "|";
-          bar-volume-indicator-font = "2";
-          bar-volume-fill = "─";
-          bar-volume-fill-font = "2";
-          bar-volume-empty = "─";
-          bar-volume-empty-font = "2";
-          bar-volume-empty-foreground = foreground-alt;
         };
 
         "module/eth" = {
@@ -293,25 +233,6 @@ in {
           label = "${icons.date} %date% %time%";
         };
 
-        "module/temperature" = {
-          type = "internal/temperature";
-          thermal-zone = "0";
-          warn-temperature = "60";
-
-          format-underline = "#0561E8";
-          format = "<ramp> <label>";
-          format-warn-underline = "#0561E8";
-          format-warn = "<ramp> <label-warn>";
-
-          label = "%temperature-c%";
-          label-warn = "%temperature-c%";
-          label-warn-foreground = secondary;
-
-          ramp-0 = "";
-          ramp-1 = "";
-          ramp-2 = "";
-          ramp-foreground = foreground-alt;
-        };
 
         "module/xkeyboard" = {
           type = "internal/xkeyboard";
@@ -361,7 +282,7 @@ in {
 
           format-discharging = "<ramp-capacity> <label-discharging>";
 
-          format-full-prefix = " ";
+          format-full-prefix = " ";
           format-full-prefix-foreground = foreground;
 
           ramp-capacity-0 = "";
