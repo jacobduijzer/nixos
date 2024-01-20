@@ -22,9 +22,9 @@ function toggle() {
 
 function status() {
   if [[ -f "/tmp/.xautolock-disabled" ]]; then
-    echo "󰌿 ";
+    echo "󰌿";
   else
-    echo "󰌾 ";
+    echo "󰌾";
   fi
 }
 
