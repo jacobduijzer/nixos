@@ -84,6 +84,7 @@
       xbindkeys
       autorandr
       xdotool
+      dunst
 
       # zsh
       thefuck
@@ -126,9 +127,13 @@
 
 	services.gvfs.enable = true; 
 	services.tumbler.enable = true;
+  #services.dunst = {
+  #  enable = true;
+  #};
 
 	programs.dconf.enable = lib.mkDefault true;
-  	#DIRS
+
+  #DIRS
 	environment.etc."xdg/user-dirs.defaults".text= ''
 		DESKTOP=$HOME/Desktop
 		DOWNLOAD=$HOME/Downloads

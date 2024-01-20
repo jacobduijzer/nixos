@@ -75,7 +75,7 @@ in {
 
           modules-left = "date";
           modules-center = "i3"; #"xwindow";
-          modules-right = "pulseaudio battery";
+          modules-right = "lock pulseaudio battery";
           #modules-right =
           #  "filesystem wlan eth memory cpu battery temperature headsetswitch";
 
@@ -323,6 +323,13 @@ in {
           menu-2-0-exec = "systemctl poweroff";
           menu-2-1 = "cancel";
           menu-2-1-exec = "menu-open-0";
+        };
+
+        "module/lock" = {
+          type = "custom/script";
+          exec = "/home/jacob/.dotfiles/scripts/lock.sh status";
+          interval = 5;
+          click-left = "/home/jacob/.dotfiles/scripts/lock.sh toggle";
         };
 
         "module/headsetswitch" = let

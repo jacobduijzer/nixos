@@ -1,0 +1,55 @@
+[global]
+monitor = 0
+follow = mouse
+width = 300
+height = 180 
+origin = top-center
+offset = 0x50
+indicate_hidden = yes
+separator_height = 1
+sort = yes
+font = JetBrainsMono Nerd Font 12,  Noto Color Emoji 12
+;font = Noto Emoji, FuraCode Nerd Font 6
+line_height = 6
+format = "<b>%s</b> <small><i>[%a]</i></small>\n%b"
+padding = 10
+frame_width = 1
+
+;markup = full
+;alignment = left
+;show_age_threshold = 60
+;word_wrap = yes
+;ignore_newline = no
+;idle_threshold = 120
+;sticky_history = yes
+;history_length = 20
+;show_indicators = yes
+;horizontal_padding = 8
+;separator_color = frame
+;startup_notification = true
+;stack_duplicates = true
+;hide_duplicate_count = false
+;dmenu = /usr/bin/dmenu -p dunst:
+;browser = /usr/bin/firefox-developer-edition -new-tab
+icon_position = left
+max_icon_size = 24
+icon_path = /usr/share/icons/Adwaita/48x48/status/:/usr/share/icons/Adwaita/48x48/devices/:/usr/share/icons/Adwaita/48x48/legacy/
+;close = ctrl+space
+;close_all = ctrl+shift+space
+;history = ctrl+shift+minus
+;context = ctrl+underscore
+foreground = "#000000"
+background = "#ffffff"
+;
+;[urgency_low]
+;foreground = "#000000"
+;timeout = 10
+;
+;[urgency_normal]
+;foreground = "#000000"
+;timeout = 10
+;
+;[urgency_critical]
+;foreground = "#000000"
+;timeout = 10
+;frame_color = "#ff0000"

@@ -1,6 +1,6 @@
 configuration {
-Monokaimodi: "window,drun,run,ssh";
-/* width: 900; */
+  Monokaimodi: "window,drun,run,ssh";
+  /*width: 900;*/
 /*lineS: 5;*/
 columns: 1;
 font: "Open Sans 11";

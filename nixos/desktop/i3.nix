@@ -1,5 +1,8 @@
 { config, pkgs, lib, ... }:
 {
+  #imports = [
+  #  ./dunst.nix
+  #];
 
   services.xserver = {
     enable = true;
@@ -26,6 +29,11 @@
         i3blocks
         polybarFull
       ];
+
+      extraSessionCommands = ''
+        ${pkgs.dunst}/bin/dunst &
+        keyctl link @u @s
+      '';
     };
 
     displayManager.lightdm = {

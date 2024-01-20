@@ -318,9 +318,6 @@ exec --no-startup-id /run/current-system/sw/bin/polybar
 # Screen binding for touch
 #exec --no-startup-id xinput --map-to-output 'ELAN901C:00 04F3:2C29' eDP-1
 
-# Bitwarden menu fix
-exec --no-startup-id keyctl link @u @s
-
 # Assign apps to workspaces
 for_window [class="Spotify"] move to workspace $ws7
 for_window [class="Ferdi"] move to workspace $ws8
