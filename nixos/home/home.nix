@@ -7,6 +7,7 @@
 		../misc/zsh.nix
     ../communication/teams.nix
     ../home/i3.nix
+    ../misc/emacs.nix
 	];
 
 	home.username = "jacob";

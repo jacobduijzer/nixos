@@ -4,6 +4,8 @@
   services.xserver = {
     enable = true;
 
+    xkbOptions = "caps:escape";
+
     desktopManager = { 
       xterm.enable = false;
       xfce = {
@@ -26,7 +28,14 @@
       ];
     };
 
-    displayManager.lightdm.enable = true;
+    displayManager.lightdm = {
+      enable = true;
+      greeters = { 
+        slick = { 
+          enable = true;
+        };
+      };
+    };
     displayManager.defaultSession = "none+i3";
 
     xrandrHeads = [

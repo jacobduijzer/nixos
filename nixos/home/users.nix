@@ -6,7 +6,7 @@
 		isNormalUser = true;
 		description = "Jacob Duijzer";
 		extraGroups = [ "networkmanager" "wheel" "docker" "video" "input" "vboxusers" ];
-		packages = with pkgs; [
+    packages = with pkgs; [
       bitwarden 
       bitwarden-cli 
       bitwarden-menu
@@ -82,6 +82,8 @@
       unclutter
       xautolock
       xbindkeys
+      autorandr
+      xdotool
 
       # zsh
       thefuck
@@ -126,8 +128,7 @@
 	services.tumbler.enable = true;
 
 	programs.dconf.enable = lib.mkDefault true;
-
-	#DIRS
+  	#DIRS
 	environment.etc."xdg/user-dirs.defaults".text= ''
 		DESKTOP=$HOME/Desktop
 		DOWNLOAD=$HOME/Downloads

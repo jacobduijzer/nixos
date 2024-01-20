@@ -61,6 +61,9 @@ hide_edge_borders smart
 # start a terminal
 bindsym $mod+Return exec /etc/profiles/per-user/jacob/bin/alacritty
 
+# start a file explorer
+#bindsym $mod+e exec /etc/profiles/per-user/jacob/bin/dolphin
+
 # start slop (zoom / magnify>
 bindsym $mod+z exec slop -r relscrzoom
 
@@ -195,12 +198,12 @@ bindsym $mod+Shift+Escape exec ~/.dotfiles/i3/blur-lock.sh
 bindsym $mod+Shift+x mode "$mode_system"
 set $mode_system Lock: l | Logout: o | Suspend: u | Hibernate: h | Reboot: r | Shutdown: s
 mode "$mode_system" {
-  bindsym l exec --no-startup-id $HOME/.dotfiles/i3/i3exit.sh lock, mode "default"
-  bindsym o exec --no-startup-id $HOME/.dotfiles/i3/i3exit.sh logout, mode "default"
-  bindsym u exec --no-startup-id $HOME/.dotfiles/i3/i3exit.sh suspend, mode "default"
-  bindsym h exec --no-startup-id $HOME/.dotfiles/i3/i3exit.sh hibernate, mode "default"
-  bindsym r exec --no-startup-id $HOME/.dotfiles/i3/i3exit.sh reboot, mode "default"
-  bindsym s exec --no-startup-id $HOME/.dotfiles/i3/i3exit.sh shutdown, mode "default"
+  bindsym l exec --no-startup-id $HOME/.dotfiles/scripts/i3exit.sh lock, mode "default"
+  bindsym o exec --no-startup-id $HOME/.dotfiles/scripts/i3exit.sh logout, mode "default"
+  bindsym u exec --no-startup-id $HOME/.dotfiles/scripts/i3exit.sh suspend, mode "default"
+  bindsym h exec --no-startup-id $HOME/.dotfiles/scripts/i3exit.sh hibernate, mode "default"
+  bindsym r exec --no-startup-id $HOME/.dotfiles/scripts/i3exit.sh reboot, mode "default"
+  bindsym s exec --no-startup-id $HOME/.dotfiles/scripts/i3exit.sh shutdown, mode "default"
 
   # back to normal: Enter or Escape
   bindsym Return mode "default"
@@ -260,8 +263,9 @@ mode "Resize Mode" {
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
 }
-bindsym $mod+x exec autorandr --change
+
 bindsym $mod+r mode "Resize Mode"
+
 # border on all windows
 for_window [class=.*] border pixel 1
 
@@ -313,6 +317,9 @@ exec --no-startup-id /run/current-system/sw/bin/polybar
 
 # Screen binding for touch
 #exec --no-startup-id xinput --map-to-output 'ELAN901C:00 04F3:2C29' eDP-1
+
+# Bitwarden menu fix
+exec --no-startup-id keyctl link @u @s
 
 # Assign apps to workspaces
 for_window [class="Spotify"] move to workspace $ws7

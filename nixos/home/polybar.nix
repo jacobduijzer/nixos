@@ -157,7 +157,7 @@ in {
           pin-workspaces = true;
 
           label-mode-padding = 2;
-          label-mode-foreground = "#000";
+          label-mode-foreground = secondary;
           label-mode-background = primary;
 
           # focused = "Active workspace on focused monitor";
@@ -178,7 +178,7 @@ in {
 
           # urgent = "Workspace with urgency hint set";
           label-urgent = "%index%";
-          label-urgent-background = alert;
+          label-urgent-background = secondary;
           label-urgent-padding = 2;
 
           label-separator = "|";
